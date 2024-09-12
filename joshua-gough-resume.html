@@ -256,12 +256,12 @@ details summary {
 						<details>
 							<summary>
 								<span class="sub-collection-item-title">Primary Role</span>
-								<span class="sub-collection-item-summary">Principal Software Engineer leading the design, development, operation, monitoring, and maintenance of microservices within the SAP Concur Travel organization's Payments team's bounded context.</span>
+								<span class="sub-collection-item-summary">Led the Travel organization's seven-engineer Payments bounded context supplier team in the design, development, operation, monitoring, and maintenance of microservices in support of multiple downstream customer teams.</span>
 								<span class="sub-collection-item-tech">PlantUML, Kotlin, Java, Spring Boot, Go, TypeScript, Envoy Proxy, Kubernetes, Github Enterprise, Mend Renovate, AWS, DynamoDB, CloudFormation, CodeBuild, ElastiCache Redis, SQL Server, PagerDuty, NewRelic, Kibana, Sysdig, DDD, Domain Storytelling</span>
 							</summary>
 							<div class="sub-collection-item-detail">
 								<ul>
-									<li>Provided technical leadership as a Principal Software Engineer for the SAP Concur Travel Payments team, overseeing the design, development, operation, monitoring, and maintenance of multiple microservices that power corporate customer travel arrangements.</li>
+									<li>Provided technical leadership as a Principal Software Engineer for the Travel Payments team, overseeing the design, development, operation, monitoring, and maintenance of multiple microservices that power corporate customer travel arrangements.</li>
 									<li>Led the development and maintenance of the payments bounded context, acting as a supplier team to air, car, hotel, and rail customer teams.</li>
 									<li>Designed APIs that encapsulated disparate database backends and handled third-party vendor intricacies, enabling seamless reservation bookings via tokenized and PCI compliant access to stored payment methods.</li>
 									<li>Ensured PCI compliant, secure internal access to personal and corporate "ghost" credit cards, as well as virtual cards, through microservices architecture.</li>
@@ -281,12 +281,12 @@ details summary {
 						<details>
 							<summary>
 								<span class="sub-collection-item-title">Scrum Master Role</span>
-								<span class="sub-collection-item-summary">Led daily standups for a cross-functional team and facilitated communication across organizational boundaries in Scrum of Scrums sessions.</span>
+								<span class="sub-collection-item-summary">Led daily standups for our team and facilitated communication across organizational boundaries in Scrum of Scrums sessions.</span>
 							</summary>
 							<div class="sub-collection-item-detail">
 								<ul>
-									<li>Led daily standups for a team of seven developers and one test engineer, ensuring clear communication, identifying blockers, and driving daily progress toward sprint goals.</li>
-									<li>Assisted team's manager in sprint planning, sprint reviews, and retrospectives, working closely with the team to estimate tasks, prioritize work, and identify areas for continuous improvement.</li>
+									<li>Led daily standups for our team of six development engineers and one test engineer, ensuring clear communication, identifying blockers, and driving daily progress toward sprint goals.</li>
+									<li>Assisted our team's manager in sprint planning, sprint reviews, and retrospectives, working closely with the team to estimate tasks, prioritize work, and identify areas for continuous improvement.</li>
 									<li>Represented our team at weekly Scrum of Scrums sessions to communicate the team's accomplishments, impediments, and ideas to other teams in different bounded contexts, including downstream customer teams and upstream supplier teams.</li>
 									<li>Participated in Preventative Action Corrective Action (PACA) meetings with stakeholders from various Travel-wide customer and supplier teams to discuss outages, report root cause analysis, identify preventative measures, and track progress on their implementation.</li>
 									<li>Ensured alignment and collaboration between cross-functional teams, resolving interdependencies and mitigating risks to maintain smooth workflows across projects.</li>
@@ -307,7 +307,7 @@ details summary {
 							</summary>
 							<div class="sub-collection-item-detail">
 								<ul>
-									<li>Led a team of four developers and a test engineer to design and implement the Strong Customer Authentication (SCA) microservice, ensuring full compliance with PSD2 regulations for multi-factor authentication (MFA) in online payments.</li>
+									<li>Led a squad of four developers and a test engineer to design and implement the Strong Customer Authentication (SCA) microservice, ensuring full compliance with PSD2 regulations for multi-factor authentication (MFA) in online payments.</li>
 									<li>Built with Spring Boot and Spring HATEOAS, following RESTful architecture principles and utilizing hypermedia-driven state transitions (HAL) for resource representation.</li>
 									<li>Our team used an Outside-in "walking skeleton" TDD approach. While SAP Concur was in vendor negotiations, the test engineer and I created an end-to-end scenario test with in-memory workflow representations, later fleshing out service internals while ensuring the tests remained successful.</li>
 									<li>Supported 3D Secure 2.0, handling both frictionless and challenge flows, ensuring secure cardholder authentication directly with financial institutions during online transactions.</li>
@@ -340,15 +340,15 @@ details summary {
 
 						<details>
 							<summary>
-								<span class="sub-collection-item-title">Payments Microservice Open-Host Style Enhancement for Downstream Customer Teams' Bounded Context Specific API Response Expansions</span>
+								<span class="sub-collection-item-title">Payments Microservice Open-Host Style Enhancement for Downstream Customer Teams' Sub-Domain-Specific API Extensions</span>
 								<span class="sub-collection-item-summary">Designed and implemented an open-host style feature enabling bounded-context-specific API response expansions for downstream air, car, rail, and hotel customer teams.</span>
 								<span class="sub-collection-item-tech">Java, Spring Boot, REST, Domain-Driven Design (DDD), Open-Host Service, Bounded Contexts, Secure Payment APIs, Supplier/Customer Team Architecture</span>
 							</summary>
 							<div class="sub-collection-item-detail">
 								<ul>
 									<li>As the supplier team, we ensured our API contract remained stable and backward-compatible while preventing our bounded context from being influenced by other domain-specific terminology from customer teams.</li>
-									<li>When the air team requested domain-specific query parameters to access legacy UI configuration data, we implemented a solution based on the DDD open-host pattern. This allowed each customer team to extend the API for their specific needs without altering the core contract or affecting other teams.</li>
-									<li>Designed an API query parameter, *expansion*, to allow customer teams to request domain-specific payment configuration data from the monolithic database for short-term expediency while teams continue to take control of their own configuration data.</li>
+									<li>When the air team requested domain-specific query parameters to access legacy UI configuration data, we instead collaborated to implement a solution based on the DDD open-host pattern. This allowed each customer team to extend the standard API response for their sub-domain-specific needs without altering the core contract or affecting other teams.</li>
+									<li>Designed an API query parameter, <b>expansion</b>, to allow customer teams to request domain-specific payment configuration data from the monolithic database for short-term expediency while teams continue to take ownership of their own configuration data.</li>
 									<li>We implemented an automated acceptance that runs on unstable pod deployments to both integration and production to ensure the air team's specific configuration remains stable as well corresponding tests to ensure no adverse impact to requests that do not contain the new parameter.</li>
 								</ul>
 							</div>
@@ -459,11 +459,11 @@ details summary {
 						<details>
 							<summary>
 								<span class="sub-collection-item-title">Overview</span>
-								<span class="sub-collection-item-summary">Led VersionOne's Platform and Integrations Team, responsible for the full lifecycle of applications, APIs, and microservices.</span>
+								<span class="sub-collection-item-summary">Led VersionOne's eight-engineer Platform and Integrations Team, responsible for the full lifecycle of applications, APIs, and microservices.</span>
 							</summary>
 							<div class="sub-collection-item-detail">
 								<ul>
-									<li>Led a team of eight Software Engineers and one Software Tester as the Development Team Lead / Manager for VersionOne's Platform and Integrations Team ("openAgile").</li>
+									<li>Led a team of seven Software Engineers and one Software Tester as the Development Team Lead / Manager for VersionOne's Platform and Integrations Team ("openAgile").</li>
 									<li>Oversaw the full lifecycle, including analysis, design, development, documentation, deployment, monitoring, support, and maintenance of full-stack applications, APIs, test automation, integrations, and cloud-based microservices.</li>
 								</ul>
 							</div>
