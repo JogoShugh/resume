@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>Joshua Scott Gough - Software Engineer &amp; Team Lead</title>
+	<title>Joshua Scott Gough - Principal Software Engineer &amp; Team Lead</title>
 	<link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.min.css" />
 	<script src="lib/jquery/dist/jquery.slim.min.js"></script>
 	<script src="lib/popper.js/dist/umd/popper.min.js"></script>
@@ -14,13 +14,62 @@
                 hide("#tabsList");
                 $(".fade").show().removeClass("fade");
             }
+
+            // Add buttons for expanding/collapsing details within the specific collection-item
+            $(".item-title").append(`
+                <span style="text-align: left; margin-bottom: 20px;">
+                    <button class="btn btn-sm btn-primary mx-2 toggle-details" onclick="toggleDetails(this)">expand details</button>
+                </span>
+            `);
+
+            // Initially collapse all details in print mode
+            $("details").each(function() {
+                $(this).removeAttr("open");
+            });
         });
+
+        function toggleDetails(button) {
+            // Find the closest collection-item ancestor
+            const collectionItem = $(button).closest('.collection-item');
+            const isExpanded = $(button).text().toLowerCase().includes("collapse");
+
+            if (isExpanded) {
+                collapseAll(collectionItem);  // Collapse only within this collection-item
+                $(button).text("expand details");
+                $(button).removeClass("btn-secondary").addClass("btn-primary");
+            } else {
+                expandAll(collectionItem);  // Expand only within this collection-item
+                $(button).text("collapse details");
+                $(button).removeClass("btn-primary").addClass("btn-secondary");
+            }
+        }
+
         function hide(target) {
             $(target).hide();
+        }
+
+        // Expand all details tags within a specific collection-item
+        function expandAll(collectionItem) {
+            $(collectionItem).find("details").attr("open", true);  // Expands all <details> inside the collection-item
+        }
+
+        // Collapse all details tags within a specific collection-item
+        function collapseAll(collectionItem) {
+            $(collectionItem).find("details").removeAttr("open");  // Collapses all <details> inside the collection-item
         }
 	</script>
 	<style type="text/css">
 		<!--
+.btn {
+	font-size: 70%;
+	margin-bottom: 4px;
+}
+
+.btn-sm {
+	font-size: 10px;
+    padding: 3px 6px;
+}
+
 .italics
 {
 	font-style:italic;
@@ -109,15 +158,6 @@
 	font-weight:bold;
 }
 
-.sub-collection-list
-{
-}
-
-.sub-collection-list LI
-{
-	margin-bottom:8px;
-}
-
 .sub-collection-item-title
 {
 	font-weight:bold;
@@ -130,7 +170,31 @@
 
 .sub-collection-item-detail
 {
-	padding-left:8px;
+	margin-left: 20px;
+	padding: 8px;
+	padding-bottom: 4px;
+	font-size: 90%;
+	background: mintcream;
+	border: 1px solid #ccc;
+}
+
+.sub-collection-item-tech
+{
+	font-size: 80%;
+	color: darkslategray;
+	display: block;
+}
+
+.sub-collection-item-tech:before
+{
+  content: "Tech: ";
+  font-weight: bold;
+  padding-left: 15px;
+}
+
+details summary {
+  cursor: pointer; /* Indicate that it's clickable */
+  padding: 10px;
 }
 		// -->
 	</style>
@@ -139,7 +203,7 @@
 
 <div class="contact">
 	<h2>Joshua S. Gough</h2>
-	<h3>Software Engineer &amp; Team Lead</h3>
+	<h3>Principal Software Engineer &amp; Team Lead</h3>
 	<div class="address">536 Quillian Avenue</div>
 	<div class="address">Decatur, GA 30032</div>
 	<div class="phone">770-714-2465</div>
@@ -163,86 +227,478 @@
 	<div class="tab-content" id="tabContent">
 		<div class="section tab-pane fade show active" role="tabpanel" id="tabs-1" aria-labelledby="tabs-1-tab">
 			<div class="heading">Empowering organizations and teams to succeed</div>
-			<div class="para">I believe that intelligent teams working directly with their users and customers create the best products, services, APIs, ecosystems, and communities. I'm a development lead / manager and hands-on team lead/application architect who loves helping people produce their best and delight their users and stakeholders. I help teams design, develop, and deliver modular platforms, architectures, and complete systems. My focus is producing systems that are easy to understand, easy to automate tests against, easy to deploy and maintain, and easy to extend by in-house teams, third-party partners, and external open source contributors.</div>
-			<div class="para">When it comes to stacks, I'm strongest in C# &amp; F# on .NET, Node.js / TypeScript / Babel, AngularJS, and Azure. I am always open to new languages and stacks and open to working with teams across a wide range of technologies. To expand my knowledge, I regularly complete courses on Pluralsight.com, listen to programming and technology podcasts, and listen to audiobooks about productivity, management, and communications. I enjoy working with other motivated people with a passion for continued learning, technical excellence, and community involvement.
+			<div class="para">
+				I believe that intelligent teams working directly with their users and customers create the best products, services, APIs, ecosystems, and communities. As a principal software engineer and team lead, I love helping teams deliver their best while delighting users and stakeholders. I guide teams in designing, developing, and delivering modular platforms, architectures, and complete systems that are easy to understand, automate, deploy, maintain, and extend by in-house teams, third-party partners, and open source contributors.
 			</div>
-			<div class="para">I'm active in several endeavors in Atlanta. In 2013, I founded <a href="http://www.meetup.com/CoderDojoPonceSprings" target="_blank">CoderDojo Ponce Springs</a>, a free and fun place for Atlanta's kids to learn how to code with the support of parents and mentors. In 2008 I founded the Atlanta ALT.NET user group for .NET developers to mingle and share knowledge. I also co-founded <a href="http://www.meetup.com/AtlantaScienceTavern">The Atlanta Science Tavern</a>, a community dedicated to connecting science enthusiasts with local science professionals to share news and views.</div>
+
+			<div class="para">
+				Since 2020, I’ve worked extensively with Kotlin/Java and Spring Boot on the JVM, deployed on AWS with Kubernetes (EKS). From 2002 to 2020, I specialized in C# and F# on .NET and Microsoft Azure. I’m always open to new languages and stacks and enjoy working with teams across diverse technologies. To keep my skills sharp, I regularly complete courses on Pluralsight.com, Coursera, and Udemy. I thrive on collaborating with motivated individuals who are committed to continuous learning, technical excellence, and community involvement.
+			</div>
+
+			<div class="para">
+				I’ve been active in several community initiatives in Atlanta. From 2013 to 2020, I founded and organized <a href="http://www.meetup.com/CoderDojoPonceSprings" target="_blank">CoderDojo Ponce Springs</a>, a free space for Atlanta's kids to learn coding with support from parents and mentors. In 2008, I founded the Atlanta ALT.NET user group for .NET developers to share knowledge and connect. That same year, I co-founded <a href="http://www.meetup.com/AtlantaScienceTavern" target="_blank">The Atlanta Science Tavern</a>, a community bringing together science enthusiasts and professionals to share ideas.
+			</div>
 		</div>
 		<div class="section tab-pane fade" role="tabpanel" id="tabs-2" aria-labelledby="tabs-2-tab">
-			<div class="heading">Employment History</div>
+			<div class="heading">Employment History <span id="expandCollapse"></span></div>
 			<div class="collection">
 				<div class="collection-item">
-					<div class="item-title s1">Development Team Lead</div>
-					<div class="item-name s1">VersionOne, Inc</div>
-					<div class="item-dates s1">September 2013 - Present</div>
-					<div class="item-description s1">VersionOne helped pioneer the agile management tool in 2002 long before it was the cool thing to do in the software development market. It produces and supports the industry’s most open, comprehensive agile life cycle management platform, supporting XP, Scrum, Kanban, DSDM, and SAFe</div>
+					<div class="item-title s1">Principal Software Engineer</div>
+					<div class="item-name s1">SAP Concur</div>
+					<div class="item-dates s1">November 2023 - June 2024</div>
+					<div class="item-description s1">SAP Concur offers travel, expense, and invoice management services for businesses. Concur solutions simplify and automate processes, and provide near real-time visibility into spending.</div>
 					<div class="sub-collection">
 						<div class="sub-collection-heading">Main Responsibilities</div>
-						<ul class="sub-collection-list">
-							<li><span class="sub-collection-item-title">Responsibilities Overview</span>
-								<span class="sub-collection-item-detail">I work with a talented and hard-working group of eight Software Engineers and one Software Tester as the Development Team Lead / Manager for VersionOne's Platform and Integrations Team. Known internally as "openAgile", our team is a full-lifecycle team. We're responsible for the analysis, design, development, documentation, deployment, monitoring, support, and maintenance of full-stack applications, APIs, acceptance test automation, integrations, and cloud-based microservices.</span>
-							</li>
-							<li><span class="sub-collection-item-title">Primary Technologies</span>
-								<span class="sub-collection-item-detail">Collaborating with other Atlanta teams and several remote teams in Chennai, India we work with a wide variety of languages and stacks, including C#, SQL Server, MongoDB, JavaScript / ECMAScript / TypeScript / Babel, AngularJS, React and Redux, Azure, EventStore, CSS/LESS, F#, Java, and Python. We also work with external devs contributing to our open source repos via GitHub PRs.</span></li>
-							<li><span class="sub-collection-item-title">Managerial Responsibilities</span>
-								<span class="sub-collection-item-detail">I lead our Scrum process for iteration planning, daily stand-ups, and retrospectives. I also pair-program with and coach/mentor my team members on tech skills to learn/improve for successful delivery of products and services. I regularly meet with each teammate to listen to issues, concerns, and ideas for improvement of our culture. I write annual reviews for them and also incorporate peer feedback and their own goals. From September 2013 until March of 2017 I also coordinated the participation of five remote contractors in Argentina, communicating daily with Slack, video conferencing, GitHub.com code reviews, VersionOne itself, plus one too brief visit to Argentina!</span></li>
-							<li><span class="sub-collection-item-title">Community Investment</span>
-								<span class="sub-collection-item-detail">As part of VersionOne's mission to improve software development and contribute to our local community, we started <a href="https://www.meetup.com/CoderDojoPonceSprings" target="_blank">CoderDojo Ponce Springs</a> in 2013 -- a free and fun place for Atlanta's kids to learn how to code. I serve as the main organizer with a dedicated team of volunteer mentors who help students learn HTML, CSS, JavaScript, C#, Java, Python, Kotlin, and more.</span></li>
-							<li><span class="sub-collection-item-title">Honors</span>
-								<span class="sub-collection-item-detail">I received a "V1nny" during the 2nd quarter of 2016, a trophy awarded to employees who demonstrate VersionOne core values and have received numerous commendations from peers throughout the quarter.</span></li>
-						</ul>
+						<details>
+							<summary>
+								<span class="sub-collection-item-title">Primary Responsibilities</span>
+								<span class="sub-collection-item-summary">Principal Software Engineer leading the design, development, operation, monitoring, and maintenance of microservices within the SAP Concur Travel organization's Payments team's bounded context.</span>
+								<span class="sub-collection-item-tech">PlantUML, Kotlin, Java, Spring Boot, Go, TypeScript, Envoy Proxy, Kubernetes, Github Enterprise, Mend Renovate, AWS, DynamoDB, CloudFormation, CodeBuild, ElastiCache Redis, SQL Server, PagerDuty, NewRelic, Kibana, Sysdig, DDD, Domain Storytelling</span>
+							</summary>
+							<div class="sub-collection-item-detail">
+								<ul>
+									<li>Provided technical leadership as a Principal Software Engineer for the SAP Concur Travel Payments team, overseeing the design, development, operation, monitoring, and maintenance of multiple microservices that power corporate customer travel arrangements.</li>
+									<li>Led the development and maintenance of the payments bounded context, acting as a supplier team to air, car, hotel, and rail customer teams.</li>
+									<li>Designed APIs that encapsulated disparate database backends and handled third-party vendor intricacies, enabling seamless reservation bookings via tokenized and PCI compliant access to stored payment methods.</li>
+									<li>Ensured PCI compliant, secure internal access to personal and corporate "ghost" credit cards, as well as virtual cards, through microservices architecture.</li>
+									<li>Work daily with a wide range of technologies including:
+										<ul>
+											<li>PlantUML, Kotlin, Java, Spring Boot, Go, TypeScript</li>
+											<li>Envoy Proxy, Kubernetes, AWS (DynamoDB, ElastiCache Redis, CloudFormation, CodeBuild)</li>
+											<li>SQL Server, Github Enterprise, Mend Renovate</li>
+											<li>PagerDuty, NewRelic, Kibana, Sysdig</li>
+										</ul>
+									</li>
+									<li>Used Domain Storytelling to facilitate collaboration with downstream customer teams and upstream supplier teams, fostering shared understanding across the organization.</li>
+								</ul>
+							</div>
+						</details>
+
+						<details>
+							<summary>
+								<span class="sub-collection-item-title">Scrum Master Responsibilities</span>
+								<span class="sub-collection-item-summary">Led daily standups for a cross-functional team and facilitated communication across organizational boundaries in Scrum of Scrums sessions.</span>
+							</summary>
+							<div class="sub-collection-item-detail">
+								<ul>
+									<li>Led daily standups for a team of seven developers and one test engineer, ensuring clear communication, identifying blockers, and driving daily progress toward sprint goals.</li>
+									<li>Assisted team's manager in sprint planning, sprint reviews, and retrospectives, working closely with the team to estimate tasks, prioritize work, and identify areas for continuous improvement.</li>
+									<li>Represented our team at weekly Scrum of Scrums sessions to communicate the team's accomplishments, impediments, and ideas to other teams in different bounded contexts, including downstream customer teams and upstream supplier teams.</li>
+									<li>Participated in Preventative Action Corrective Action (PACA) meetings with stakeholders from various Travel-wide customer and supplier teams to discuss outages, report root cause analysis, identify preventative measures, and track progress on their implementation.</li>
+									<li>Ensured alignment and collaboration between cross-functional teams, resolving interdependencies and mitigating risks to maintain smooth workflows across projects.</li>
+									<li>Worked closely with Product Owners and stakeholders to manage the product backlog, refine stories, and ensure the team was delivering value aligned with business priorities.</li>
+								</ul>
+							</div>
+
+						</details>
 					</div>
 					<div class="sub-collection">
 						<div class="sub-collection-heading">Major Projects</div>
-						<ul class="sub-collection-list">
-							<li><span class="sub-collection-item-title">CommitStream Azure-cloud-based Service</span>
-								<span class="sub-collection-item-detail">Led architecture and development of CommitStream, an Azure-hosted microservice built with Node.JS, Express, mocha, EventStore, AngularJS, JSON, JSON Schema, and Hypertext Application Language (HAL). System comprised of auto-scaling App Services and 3 database VMs running EventStore in Clustered mode within an Availability Set and a Load Balancer. We host the code in GitHub and utilize continuous deployment based on Azure/GitHub code push deployments. The services listens for version control system commit event messages delivered by WebHooks or HTTP clients from cloud-based or on-premise servers. It hosts plugins, developed in-house and by third-party company contributors, that translate native event payloads into a common format. These events get summarized, stored, aggregated by work item, team, and program. The summaries surface within item detail and TeamRoom panes inside VersionOne's flagship agile ALM product. This allows large enterprises with teams that work with heterogeneous VCS tools and repos to quickly link their code changes to IDs of planned work items. It facilitates better daily agile/Scrum standup conversations. Worked with a team of local developers in Atlanta/Alpharetta and two remote developers in Argentina over nine months to develop and deploy into production. Our team actively updates, monitors, and supports this system via Pingdom, Pendo usage analysis, ZenDesk ticketing, and with Azure logging tools.</span>
-							</li>
-							<li><span class="sub-collection-item-title">API Client Modernization</span>
-								<span class="sub-collection-item-detail">Led development of improved and easier to use .NET API client using C# 7.1, Visual Studio Code, YAML &amp; JSON and NUnit for unit testing. The modernized client greatly reduces the amount of code developers writing integrations against the VersionOne API while significantly improving code readability. It also allows for targeting the new Bulk API and greatly simplifies the task for constructing the complicated URLs needed to pass query filters and parameters to the API.</span>
-							</li>
-							<li><span class="sub-collection-item-title">Bulk Web API Implementation</span>
-								<span class="sub-collection-item-detail">Led development of new Bulk API endpoint for the VersionOne API using C# 6, F# 4.1, YAML &amp; JSON, JetBrains Rider IDE, Node.js and TypeScript with the Ava test runner for end-to-end acceptance test automation. VersionOne's legacy REST API only supports the creation, modification, or operation-invocation of a single system entity per HTTP request. The Bulk API allows creating multiple new entities in one request, modifying multiple entities, or invoking operations on multiple entities via SQL-like queries. A single HTTP command can combine create, update, and execute commands. Adoption of this feature has increased performance speeds dramatically. As one example, bulk deleting of 2,000 expired messages takes less than two minutes now compared to upwards of 20 minutes with the leagcy endpoint.</span>
-							</li>
-							<li><span class="sub-collection-item-title">Slack Plugin</span>
-								<span class="sub-collection-item-detail">Led design of Slack plugin for VersionOne that responds to in-app domain events and formats them for delivery to Slack Incoming WebHook endpoints to notify members about relevant work item events happening inside VersionOne. Built with C# 6, Visual Studio 2015, NUnit, StructureMap, and Log4Net. Collaborated with remote team in Argentina who completed features for the plugin.
-							<li><span class="sub-collection-item-title">Feature Plugins Support</span>
-								<span class="sub-collection-item-detail">Led project to introduce modular/pluggable feature support into VersionOne's ALM product. Accomplished this by separating interface/contract definitions of highly stable abstractions from concrete implementations and identifying extension points within the system's API routing and UX rendering sub-components. Discrete features get versioned and packaged as single DLLs (with module-specific views, APIs, DTOs, etc) capable of run-time deployment &amp; hot-swapping. This led to ability of feature teams to independently develop and test their features without the common branch and merge issues plaguing many monolithic codebases. Test engineers also now create test suites against the API layer and module contracts without being tightly-coupled to all implementation details.</span>
-							</li>
-						</ul>
+
+						<details>
+							<summary>
+								<span class="sub-collection-item-title">Strong Customer Authentication Microservice Design and Implementation</span>
+								<span class="sub-collection-item-summary">Led the design and implementation of a microservice for point-of-sale authentication and purchase authorization, compliant with European PSD2 regulations and utilizing 3D Secure 2.0 with HATEOAS-driven state transitions.</span>
+								<span class="sub-collection-item-tech">Kotlin, Spring Boot, Spring HATEOAS, HAL, REST, 3DS 2.0, JWT, mutual TLS (mTLS), Envoy proxy, AWS DynamoDB, Event Sourcing, Helm, Docker, AWS EKS, CloudFormation, GraphQL, React, JSON, Iframes, Auto-submitting Forms, Netcetera 3DS, API Gateway, EMVCo 3DS Protocol, PlantUML</span>
+							</summary>
+							<div class="sub-collection-item-detail">
+								<ul>
+									<li>Led a team of four developers and a test engineer to design and implement the Strong Customer Authentication (SCA) microservice, ensuring full compliance with PSD2 regulations for multi-factor authentication (MFA) in online payments.</li>
+									<li>Built with Spring Boot and Spring HATEOAS, following RESTful architecture principles and utilizing hypermedia-driven state transitions (HAL) for resource representation.</li>
+									<li>Our team used an Outside-in "walking skeleton" TDD approach. While SAP Concur was in vendor negotiations, the test engineer and I created an end-to-end scenario test with in-memory workflow representations, later fleshing out service internals while ensuring the tests remained successful.</li>
+									<li>Supported 3D Secure 2.0, handling both frictionless and challenge flows, ensuring secure cardholder authentication directly with financial institutions during online transactions.</li>
+									<li>Implemented auto-submitting forms in hidden and visible iframes, which load content directly from financial institutions, preventing sensitive data from passing through Concur's network or intermediaries.</li>
+									<li>Rendered these iframes using React components, integrating seamlessly into both Concur's legacy UI and the new V4 interface.</li>
+									<li>Secured communication with JWT for user authentication and mutual TLS (mTLS) for encrypted channels between Concur services and 3DS vendor Netcetera.</li>
+									<li>Utilized an event-sourced architecture with AWS DynamoDB, storing transaction workflow steps as discrete events, enabling state hydration and enforcing workflow invariants.</li>
+									<li>Provided powerful projection capabilities for user behavior analysis, such as tracking booking abandonment, while ensuring a complete audit trail without additional libraries or tools.</li>
+								</ul>
+							</div>
+						</details>
+
+						<details>
+							<summary>
+								<span class="sub-collection-item-title">PCI Proxy Microservice Enhancement for FOP Handling Across Multiple Data Stores</span>
+								<span class="sub-collection-item-summary">Led the design strategy for enhancing PCI proxy capabilities to support FOP types beyond ghost and personal cards, improving future scalability and flexibility.</span>
+								<span class="sub-collection-item-tech">Java, Spring Boot, Microservices, Encryption, ElastiCache, PCI Proxy, Redis, SQL</span>
+							</summary>
+							<div class="sub-collection-item-detail">
+								<ul>
+									<li>Designed a flexible architecture to evolve FOP (Form of Payment) handling for future scalability, supporting multiple FOP types beyond the initial ghost and personal cards stored in monolithic legacy database.</li>
+									<li>Proposed enhancements to handle FOP types using disparate data sources with UUID-based identification, ensuring efficient and secure data retrieval across systems.</li>
+									<li>Outlined improvements for PCI Proxy submissions by caching context in ElastiCache, enabling streamlined decryption and optimized data source lookups for faster processing.</li>
+									<li>Introduced a context-based, tokenized approach for FOP submissions, minimizing the need for service teams to adapt to different FOP types, reducing errors and implementation complexity.</li>
+									<li>Explored optimizations for tracing and debugging using fopUuid visibility in Kibana for first-level monitoring.</li>
+								</ul>
+							</div>
+						</details>
+
+
+						<details>
+							<summary>
+								<span class="sub-collection-item-title">Payments Microservice Open-Host Style Enhancement for Downstream Customer Teams' Bounded Context Specific API Response Expansions</span>
+								<span class="sub-collection-item-summary">Designed and implemented an open-host style feature enabling bounded-context-specific API response expansions for downstream air, car, rail, and hotel customer teams.</span>
+								<span class="sub-collection-item-tech">Java, Spring Boot, REST, Domain-Driven Design (DDD), Open-Host Service, Bounded Contexts, Secure Payment APIs, Supplier/Customer Team Architecture</span>
+							</summary>
+							<div class="sub-collection-item-detail">
+								<ul>
+									<li>As the supplier team, we ensured our API contract remained stable and backward-compatible while preventing our bounded context from being influenced by other domain-specific terminology from customer teams.</li>
+									<li>When the air team requested domain-specific query parameters to access legacy UI configuration data, we implemented a solution based on the DDD open-host pattern. This allowed each customer team to extend the API for their specific needs without altering the core contract or affecting other teams.</li>
+									<li>Designed an API query parameter, *expansion*, to allow customer teams to request domain-specific payment configuration data from the monolithic database for short-term expediency while teams continue to take control of their own configuration data.</li>
+									<li>We implemented an automated acceptance that runs on unstable pod deployments to both integration and production to ensure the air team's specific configuration remains stable as well corresponding tests to ensure no adverse impact to requests that do not contain the new parameter.</li>
+								</ul>
+							</div>
+						</details>
+					</div>
+				</div>
+				<div class="collection-item">
+					<div class="item-title s1">Senior Software Engineer</div>
+					<div class="item-name s1">SAP Concur</div>
+					<div class="item-dates s1">January 2020 - November 2023</div>
+					<div class="sub-collection">
+						<div class="sub-collection-heading">Main Responsibilities</div>
+						<details>
+							<summary>
+								<span class="sub-collection-item-title">Responsibilities Overview</span>
+								<span class="sub-collection-item-summary">Senior Software Engineer collaborating on feature development, implementing library updates, and modifying CI deployment scripts to align with company-wide AWS migration effort.</span>
+								<span class="sub-collection-item-tech">Java, Go, Kotlin, Microservices, Envoy sidecar, service mesh, AWS CodeBuild, Immutable Infrastructure, Helm, CloudFormation, BouncyCastle, FIPS Compliance, ASP/VBScript, AWS (US, Europe, China)</span>
+							</summary>
+							<div class="sub-collection-item-detail">
+								<p>As a Senior Software Engineer, I collaborated with multiple teams in different bounded contexts to deliver new features and enhancements across a range of microservices and our large legacy ASP/VBScript (yes, VBScript in 2020 😔) front-end web UI. I played a key role in maintaining and updating CI/CD pipelines to adhere to company-wide adoption of AWS CodeBuild and Immutable Infrastructure principles, ensuring the automation of deployment and testing processes.</p>
+								<ul>
+									<li>Worked closely with other engineers to implement new features and fixes in our Java, Go, and Kotlin payments bounded context microservices.</li>
+									<li>Configured an Envoy sidecar container of an upstream team's OTCrypto service for our payments microservice to avoid latency when decrypting stored credit card numbers from the legacy database. This eliminated need for calls to exit the pod to traverse the service mesh to the independently deployed version of the OTCrypto service.</li>
+									<li>Managed and updated libraries and dependencies for FIPS compliance, including upgrading our Java services to use BouncyCastle.</li>
+									<li>Modified Helm charts and templates and AWS CodeBuild scripts to support the AWS migration.</li>
+									<li>Implemented and updated AWS CloudFormation scripts to provision and manage cloud infrastructure, ensuring consistent deployments across various AWS environments.</li>
+									<li>Deployed microservices into newly provisioned AWS regions, including US, European, and Chinese data centers, ensuring compliance with regional requirements and performance optimization.</li>
+									<li>Contributed to improving infrastructure as code practices, ensuring all cloud resources were properly managed and scalable for future needs.</li>
+								</ul>
+							</div>
+						</details>
+
+						<div class="sub-collection-heading">Major Projects</div>
+						<details>
+							<summary>
+								<span class="sub-collection-item-title">Payments Microservice Performance Overhaul for V4 Major Release</span>
+								<span class="sub-collection-item-summary">Collaborated with our test engineer to reduce response times by 96%, from 3,520ms to 132ms, and scale request handling from 2,107 to over 68,000 HTTP requests.</span>
+								<span class="sub-collection-item-tech">Java, Spring Boot, Microservices, JMeter, ElastiCache, Kubernetes, Encryption, NewRelic</span>
+							</summary>
+							<div class="sub-collection-item-detail">
+								<ul>
+									<li>During a Travel-organization wide performance readiness initiative, I worked closely with our Test Engineer running extensive JMeter tests. We identified a CPU-bound bottleneck caused by redundant calls to <b>SecretKeyFactory.generateSecret</b>, which was adding 140ms per request. Another engineer had earlier noticed this number when she ran her own NewRelic profiling analysis.</li>
+									<li>Implemented a caching solution with ElastiCache, storing security tokens for 5 minutes, reducing unnecessary cryptographic operations and improving throughput to handle over 55,000 HTTP requests with minimal latency. This ensured that even when requests arrived to a different pod, the token was rapidly available via ElastiCache, obviating the need for the pod to run the encryption algorithm on its own.</li>
+									<li>Optimized the system to scale from handling 2,107 to over 68,000 requests within the same test runtime, significantly improving system resilience and real-world performance under load and reducing the deployment's propensity to spin up new pods in vain attempts to handle the increase CPU-bound load.</li>
+									<li>Addressed cache collision issues and adjusted Kubernetes liveness probes to prevent pod restarts during high load conditions, ensuring stability and reliability.</li>
+								</ul>
+							</div>
+						</details>
+						<details>
+							<summary>
+								<span class="sub-collection-item-title">Payments Team Domain Storytelling Practice</span>
+								<span class="sub-collection-item-summary">Led the team’s adoption of advanced Domain-Driven Design (DDD) practices through Domain Storytelling, enhancing cross-team collaboration and understanding of our monolithic codebase.</span>
+								<span class="sub-collection-item-tech">Domain-Driven Design, Domain Storytelling, PlantUML, Monolith to Microservices, Systems Archaeology</span>
+							</summary>
+							<div class="sub-collection-item-detail">
+								<ul>
+									<li>Led the incremental adoption of Domain Storytelling within the Payments team to enhance our Domain-Driven Design (DDD) practices, moving beyond basic bounded context concepts to map out complex domain knowledge and improve cross-team collaboration.</li>
+									<li>Studied the Domain Storytelling book and lectures by the authors, and integrated the approach into our workflows, allowing us to create visual stories representing process flows within the domain.</li>
+									<li>Utilized <strong>DomainStory-PlantUML</strong> and <strong>PlantUML</strong> to build these visual stories, helping us better understand how different actors interact indirectly or directly with the payments microservices.</li>
+									<li>Applied Domain Storytelling as part of our "systems archaeology" efforts to dissect and document legacy monolithic code, facilitating a our ongoing evolution toward more modular, microservice distillations from the large legacy monolith.</li
+								</ul>
+							</div>
+						</details>
+
+						<details>
+							<summary>
+								<span class="sub-collection-item-title">PCI Proxy Microservice V4 Design</span>
+								<span class="sub-collection-item-summary">Led the modernization of a PCI Proxy microservice using Kotlin and Spring Boot to securely manage corporate and personal card data, with expanded support for tokenized information and enhanced command payload flexibility.</span>
+								<span class="sub-collection-item-tech">Kotlin, Spring Boot, Microservices, PCI Compliance, Tokenization, Vendor APIs, Encryption</span>
+							</summary>
+							<div class="sub-collection-item-detail">
+								<ul>
+									<li>Led the design and modernization of the PCI Proxy Microservice V4 to ensure secure access to both personal and corporate (ghost) cards stored in a monolithic database.</li>
+									<li>Enhanced the service, which initially only replaced tokens with card numbers, to support tokenization of additional cardholder details, including expiration dates and cardholder names.</li>
+									<li>Expanded functionality to allow customer teams to issue secure purchase authorizations while handling only tokenized data, improving data security and privacy.</li>
+									<li>Introduced support for flexible command payloads, enabling custom headers and body templates within the payload JSON for increased flexibility.</li>
+									<li>Accommodated optional vendor-specific encryption algorithms and added support for tokenized CVV, ensuring compliance with industry security standards.</li>
+								</ul>
+							</div>
+						</details>
+
+						<details>
+							<summary>
+								<span class="sub-collection-item-title">Payments Microservice Modernization with Kotlin</span>
+								<span class="sub-collection-item-summary">Led the incremental migration of a core Payments Spring Boot microservice from Java to Kotlin, enhancing test efficiency with the introduction of the MockK library.</span>
+								<span class="sub-collection-item-tech">Kotlin, Spring Boot, Microservices, MockK, Mockito, Java</span>
+							</summary>
+							<div class="sub-collection-item-detail">
+								<ul>
+									<li>Led the transition of our Payments API microservice from Java to Kotlin to align with the Travel organization’s emerging modernization standards.</li>
+									<li>Introduced the team to the MockK library, leveraging its clean DSL for elegant and simplified test mocking, replacing the more cumbersome Mockito framework.</li>
+									<li>Implemented the migration incrementally to ensure stability and maintain backward compatibility during the transition, while enhancing developer productivity and test reliability.</li>
+									<li>This enabled us to implement new features directly in Kotlin while maintaining long-standing features in Java and slowly rewriting them by Kotlin equivalents without introducing any risk.</li>
+									<li>Provided guidance and support to the development team throughout the migration process, helping them adapt to Kotlin's syntax and benefits without disrupting ongoing work on the service.</li>
+								</ul>
+							</div>
+						</details>
+
+
+					</div>
+				</div>
+				<div class="collection-item">
+					<div class="item-title s1">Development Team Lead / Manager</div>
+					<div class="item-name s1">VersionOne, Inc</div>
+					<div class="item-dates s1">September 2013 - December 2019</div>
+					<div class="item-description s1">VersionOne pioneered the agile management tool market in 2002, offering the industry’s most open and comprehensive agile lifecycle management platform, supporting XP, Scrum, Kanban, DSDM, and SAFe.</div>
+					<div class="sub-collection">
+						<div class="sub-collection-heading">Main Responsibilities</div>
+						<details>
+							<summary>
+								<span class="sub-collection-item-title">Responsibilities Overview</span>
+								<span class="sub-collection-item-summary">Led VersionOne's Platform and Integrations Team, responsible for the full lifecycle of applications, APIs, and microservices.</span>
+							</summary>
+							<div class="sub-collection-item-detail">
+								<ul>
+									<li>Led a team of eight Software Engineers and one Software Tester as the Development Team Lead / Manager for VersionOne's Platform and Integrations Team ("openAgile").</li>
+									<li>Oversaw the full lifecycle, including analysis, design, development, documentation, deployment, monitoring, support, and maintenance of full-stack applications, APIs, test automation, integrations, and cloud-based microservices.</li>
+								</ul>
+							</div>
+						</details>
+
+						<details>
+							<summary>
+								<span class="sub-collection-item-title">Primary Technologies</span>
+								<span class="sub-collection-item-summary">Collaborated with teams in Atlanta and Chennai, working with a wide variety of languages and stacks.</span>
+								<span class="sub-collection-item-tech">C#, SQL Server, MongoDB, JavaScript, ECMAScript, TypeScript, Babel, AngularJS, React, Redux, Azure, EventStore, CSS, LESS, F#, Java, Python, GitHub</span>
+							</summary>
+							<div class="sub-collection-item-detail">
+								<ul>
+									<li>Collaborated with teams in Atlanta and remote teams in Chennai, India.</li>
+									<li>Worked with various technologies, including C#, SQL Server, MongoDB, JavaScript (ECMAScript, TypeScript, Babel), AngularJS, React, Redux, Azure, EventStore, CSS/LESS, F#, Java, and Python.</li>
+									<li>Managed open source repositories on GitHub and collaborated with external developers contributing via pull requests.</li>
+								</ul>
+							</div>
+						</details>
+
+						<details>
+							<summary>
+								<span class="sub-collection-item-title">Managerial Responsibilities</span>
+								<span class="sub-collection-item-summary">Led Scrum processes, mentored team members, conducted performance reviews, and coordinated remote contractors.</span>
+								<span class="sub-collection-item-tech">Scrum, Slack, video conferencing, GitHub, VersionOne</span>
+							</summary>
+							<div class="sub-collection-item-detail">
+								<ul>
+									<li>Led Scrum processes, including iteration planning, daily stand-ups, and retrospectives.</li>
+									<li>Mentored team members through pair programming and coaching, helping them improve technical skills for successful product delivery.</li>
+									<li>Conducted regular one-on-one meetings with team members to discuss issues, gather feedback, and set improvement goals.</li>
+									<li>Wrote annual performance reviews, incorporating peer feedback and personal goals.</li>
+									<li>From 2013 to 2017, coordinated five remote contractors in Argentina, managing daily communication via Slack, video conferencing, and GitHub, and conducted one in-person visit to Argentina.</li>
+								</ul>
+							</div>
+						</details>
+
+						<details>
+							<summary>
+								<span class="sub-collection-item-title">Community Investment</span>
+								<span class="sub-collection-item-summary">Organized CoderDojo Ponce Springs, a free coding club for kids in Atlanta.</span>
+								<span class="sub-collection-item-tech">HTML, CSS, JavaScript, C#, Java, Python, Kotlin</span>
+							</summary>
+							<div class="sub-collection-item-detail">
+								<ul>
+									<li>Served as the main organizer of <a href="https://www.meetup.com/CoderDojoPonceSprings" target="_blank">CoderDojo Ponce Springs</a>, a free coding club for kids in Atlanta, starting in 2013.</li>
+									<li>Led a team of volunteer mentors, helping students learn HTML, CSS, JavaScript, C#, Java, Python, Kotlin, and more.</li>
+								</ul>
+							</div>
+						</details>
+
+						<details>
+							<summary>
+								<span class="sub-collection-item-title">Honors</span>
+								<span class="sub-collection-item-summary">Received a "V1nny" award in 2016 for demonstrating VersionOne core values and peer commendations.</span>
+								<span class="sub-collection-item-tech">N/A</span>
+							</summary>
+							<div class="sub-collection-item-detail">
+								<ul>
+									<li>Received the "V1nny" award in Q2 2016 for demonstrating VersionOne core values and receiving peer commendations throughout the quarter.</li>
+								</ul>
+							</div>
+						</details>
+					</div>
+
+					<div class="sub-collection">
+						<div class="sub-collection-heading">Major Projects</div>
+						<details>
+							<summary>
+								<span class="sub-collection-item-title">CommitStream Azure-cloud-based Service</span>
+								<span class="sub-collection-item-summary">Led the architecture and development of a cloud-based microservice linking version control system events to agile work items.</span>
+								<span class="sub-collection-item-tech">Azure, Node.JS, Express, mocha, EventStore, AngularJS, JSON, JSON Schema, HAL, GitHub, VersionOne</span>
+							</summary>
+							<div class="sub-collection-item-detail">
+								<ul>
+									<li>Led the architecture and development of CommitStream, an Azure-hosted microservice leveraging Node.JS, Express, mocha, and EventStore for event processing.</li>
+									<li>Designed a system with auto-scaling App Services, a clustered EventStore database, and Load Balancer for optimal performance and reliability.</li>
+									<li>Enabled the service to listen for commit events from various version control systems, translating native event payloads into a standardized format and integrating into VersionOne’s agile ALM product.</li>
+									<li>Collaborated with local developers and remote developers in Argentina, maintaining the system through tools like Pingdom, Pendo, ZenDesk, and Azure logging tools.</li>
+								</ul>
+							</div>
+						</details>
+
+						<details>
+							<summary>
+								<span class="sub-collection-item-title">API Client Modernization</span>
+								<span class="sub-collection-item-summary">Led the development of a new .NET API client for VersionOne, simplifying integrations and improving code readability.</span>
+								<span class="sub-collection-item-tech">C# 7.1, Visual Studio Code, YAML, JSON, NUnit</span>
+							</summary>
+							<div class="sub-collection-item-detail">
+								<ul>
+									<li>Led the development of a new .NET API client using C# 7.1, Visual Studio Code, YAML, and JSON.</li>
+									<li>Streamlined developer integration with VersionOne's API by reducing code complexity and improving readability.</li>
+									<li>Supported the new Bulk API and simplified URL construction with query filters and parameters.</li>
+								</ul>
+							</div>
+						</details>
+
+						<details>
+							<summary>
+								<span class="sub-collection-item-title">Bulk Web API Implementation</span>
+								<span class="sub-collection-item-summary">Led the development of a new Bulk API endpoint, improving performance for multiple entity operations.</span>
+								<span class="sub-collection-item-tech">C# 6, F# 4.1, YAML, JSON, JetBrains Rider, Node.js, TypeScript, Ava</span>
+							</summary>
+							<div class="sub-collection-item-detail">
+								<ul>
+									<li>Led the development of the Bulk API endpoint for the VersionOne API using C# 6, F# 4.1, YAML, and JSON.</li>
+									<li>Developed in JetBrains Rider with end-to-end test automation using Node.js, TypeScript, and Ava.</li>
+									<li>Improved performance by enabling operations on multiple entities, dramatically reducing processing times for bulk actions.</li>
+								</ul>
+							</div>
+						</details>
+
+						<details>
+							<summary>
+								<span class="sub-collection-item-title">Slack Plugin</span>
+								<span class="sub-collection-item-summary">Led the design of a Slack plugin for VersionOne, delivering relevant work item event notifications.</span>
+								<span class="sub-collection-item-tech">C# 6, Visual Studio 2015, NUnit, StructureMap, Log4Net</span>
+							</summary>
+							<div class="sub-collection-item-detail">
+								<ul>
+									<li>Led the design of a Slack plugin that responds to in-app domain events and formats them for delivery to Slack Incoming WebHook endpoints.</li>
+									<li>Collaborated with a remote team in Argentina to add features and complete the plugin using C# 6, Visual Studio 2015, NUnit, StructureMap, and Log4Net.</li>
+								</ul>
+							</div>
+						</details>
+
+						<details>
+							<summary>
+								<span class="sub-collection-item-title">Feature Plugins Support</span>
+								<span class="sub-collection-item-summary">Led the project to introduce modular and pluggable feature support into VersionOne's ALM product, enabling independent feature development.</span>
+								<span class="sub-collection-item-tech">C#, F#, ASP.NET MVC, MvcCodeRouting</span>
+							</summary>
+							<div class="sub-collection-item-detail">
+								<ul>
+									<li>Led a project to introduce modular and pluggable feature support by separating interface/contract definitions from concrete implementations.</li>
+									<li>Identified extension points within the system’s API routing and UX rendering components.</li>
+									<li>Implemented features as single DLLs with module-specific views, APIs, and DTOs for runtime deployment and hot-swapping.</li>
+									<li>Allowed teams to independently develop and test features, mitigating branch and merge issues in monolithic codebases.</li>
+								</ul>
+							</div>
+						</details>
 					</div>
 				</div>
 				<div class="collection-item">
 					<div class="item-title s1">Agile Lead Developer</div>
 					<div class="item-name s1">VersionOne, Inc</div>
 					<div class="item-dates s1">June 2012 - September 2013</div>
-					<div class="item-description s1">VersionOne helped pioneer the agile management tool in 2002 long before it was the cool thing to do in the software development market. It produces and supports the industry’s most open, comprehensive agile life cycle management platform, supporting XP, Scrum, Kanban, DSDM, and SAFe</div>
 					<div class="sub-collection">
 						<div class="sub-collection-heading">Projects and Responsibilities</div>
-						<ul class="sub-collection-list">
-							<li><span class="sub-collection-item-title">Application Gallery</span>
-								<span class="sub-collection-item-detail">Designed and developed Application Gallery system to replace time-consuming/costly manual process for management and display of 50+ integrations and third-party applications built in-house and by partner companies. Built with JSON Schema, Node.js, Express Web framework, AngularJS, Bootstrap, mocha test framework, Istanbul for code coverage, and deployed as an Azure App Service using Jenkins build jobs and WebHook-based continuous deployment via GitHub code pushes on master and staging branches.</span></li>
-							<li><span class="sub-collection-item-title">Java and .NET SDK Client Modernization</span>
-								<span class="sub-collection-item-detail">Upgraded VersionOne.SDK.NET.APIClient and VersionOne.SDK.Java.APIClient libraries to use modern NuGet /Maven dependencies and build within Jenkins and introduced fluent querying interface to improve user experience with the library and reduce user burden of typed code by 50 to 90% for common operations.</span></li>
-							<li><span class="sub-collection-item-title">Integration Maintenance</span>
-								<span class="sub-collection-item-detail">Resolved defects for and performed version change pace-keeping upgrades for legacy on-premise integrations for more than a dozen third-party VCS, ALM, issue tracking, and build system tools.</span></li>
-							<li><span class="sub-collection-item-title">Community Collaboration</span>
-								<span class="sub-collection-item-detail">Monitored public, open source GitHub repositories and Gitter.IM chatroom to coordinate and code-review contributions by external developers</span></li>
-						</ul>
+						<details>
+							<summary>
+								<span class="sub-collection-item-title">Application Gallery</span>
+								<span class="sub-collection-item-summary">Designed and developed an Application Gallery system to replace a manual process for managing and displaying integrations and third-party applications.</span>
+								<span class="sub-collection-item-tech">JSON Schema, Node.js, Express, AngularJS, Bootstrap, mocha, Istanbul, Azure App Service, Jenkins, GitHub</span>
+							</summary>
+							<div class="sub-collection-item-detail">
+								<ul>
+									<li>Designed and developed the Application Gallery system, replacing a costly and manual process for managing over 50 integrations and third-party applications.</li>
+									<li>Used technologies such as JSON Schema, Node.js, Express, AngularJS, Bootstrap, and mocha, with Istanbul ensuring code coverage.</li>
+									<li>Deployed the system as an Azure App Service, utilizing Jenkins for build automation and WebHook-based continuous deployment triggered by GitHub pushes to master and staging branches.</li>
+								</ul>
+							</div>
+						</details>
+
+						<details>
+							<summary>
+								<span class="sub-collection-item-title">Java and .NET SDK Client Modernization</span>
+								<span class="sub-collection-item-summary">Upgraded Java and .NET SDK client libraries, introducing a fluent querying interface to improve user experience and reduce code burden.</span>
+								<span class="sub-collection-item-tech">NuGet, Maven, Jenkins</span>
+							</summary>
+							<div class="sub-collection-item-detail">
+								<ul>
+									<li>Upgraded VersionOne.SDK.NET.APIClient and VersionOne.SDK.Java.APIClient libraries to use modern NuGet and Maven dependencies.</li>
+									<li>Integrated the build process into Jenkins for automated deployments.</li>
+									<li>Introduced a fluent querying interface, reducing the amount of code required for common operations by 50% to 90%, significantly improving the user experience.</li>
+								</ul>
+							</div>
+						</details>
+
+						<details>
+							<summary>
+								<span class="sub-collection-item-title">Integration Maintenance</span>
+								<span class="sub-collection-item-summary">Resolved defects and performed version upgrades for legacy on-premise integrations with various third-party tools.</span>
+								<span class="sub-collection-item-tech">C#, Java, MS Build, Powershell, Maven</span>
+							</summary>
+							<div class="sub-collection-item-detail">
+								<ul>
+									<li>Resolved defects and maintained pace-keeping upgrades for legacy on-premise integrations with over a dozen third-party VCS, ALM, issue tracking, and build system tools.</li>
+								</ul>
+							</div>
+						</details>
+
+						<details>
+							<summary>
+								<span class="sub-collection-item-title">Community Collaboration</span>
+								<span class="sub-collection-item-summary">Monitored public, open-source repositories and chatrooms to coordinate and code-review contributions by external developers.</span>
+								<span class="sub-collection-item-tech">GitHub, Gitter.IM</span>
+							</summary>
+							<div class="sub-collection-item-detail">
+								<ul>
+									<li>Monitored public GitHub repositories and the Gitter.IM chatroom to coordinate with external developers and review their code contributions.</li>
+								</ul>
+							</div>
+						</details>
 					</div>
 				</div>
+
 				<div class="collection-item">
 					<div class="item-title s1">Senior Software Engineer</div>
 					<div class="item-name s1">McKing Consulting &amp; Lockheed Martin Corporation -- Centers for Disease Control and Prevention</div>
 					<div class="item-dates s1">April 2011 - December 2012</div>
 					<div class="sub-collection">
 						<div class="sub-collection-heading">Projects and Responsibilities</div>
-						<ul class="sub-collection-list">
-							<li><span class="sub-collection-item-title">Epi-X Reporting System Re-engineering</span>
-								<span class="sub-collection-item-detail">Led the architectural design phase and test automation framework development for the re-engineering effort of the mission-critical Epi-X secure communications system. I also designed the programming test and led the technical interviewing process for hiring two additional .NET developers. To foster smooth progress for the rewrite, I introduced the team to the basic Scrum process and created agile boards and lanes and facilitated sprint planning and retrospective meetings. Our team completely redeveloped the UI and backend code for the legacy system, transitioning it from classic ASP, VBScript, SQL 2008, and custom JavaScript  to modern ASP.NET MVC and Web API, C#, jQuery-based JavaScript, and C# based Windows services. During our iterations, we worked with the medical and editorial staff and the support team to prioritize the most-used components of the system first and executed a continuous delivery model, getting working software into their hands early and often to get valuable feedback to guide the development completion.</span></li>
-							<li><span class="sub-collection-item-title">NSAR Project Evaluation and Guidance</span>
-								<span class="sub-collection-item-detail">Tasked with assessing how to improve the jeopardized state of the technical refresh of the NSAR system, I helped course-correct the project such that several critical upgrades to the technology were completed with the staff on-hand. With the help of static code analysis tools and the NSAR team developers, we implemented a modular ASP.NET MVC based application architecture utilizing the open source MvcCodeRouting package.</span></li>
-						</ul>
+						<details>
+							<summary>
+								<span class="sub-collection-item-title">Epi-X Reporting System Re-engineering</span>
+								<span class="sub-collection-item-summary">Led architectural design, test automation, and team guidance for the re-engineering of the Epi-X system, transitioning it to modern technologies.</span>
+								<span class="sub-collection-item-tech">ASP.NET MVC, Web API, C#, jQuery, Windows services, Scrum</span>
+							</summary>
+							<div class="sub-collection-item-detail">
+								<p>Led the architectural design phase and test automation framework development for the re-engineering of the mission-critical Epi-X secure communications system. Also designed the programming test and led the technical interviewing process to hire two additional .NET developers.</p>
+								<p>Introduced the team to Scrum, created agile boards and lanes, and facilitated sprint planning and retrospective meetings to ensure smooth progress. The team completely redeveloped the UI and backend code, transitioning from classic ASP, VBScript, SQL 2008, and custom JavaScript to modern ASP.NET MVC and Web API, C#, jQuery-based JavaScript, and C# based Windows services.</p>
+								<p>Collaborated with medical, editorial, and support staff to prioritize components and implement a continuous delivery model, gathering valuable feedback throughout development.</p>
+							</div>
+						</details>
+
+						<details>
+							<summary>
+								<span class="sub-collection-item-title">NSAR Project Evaluation and Guidance</span>
+								<span class="sub-collection-item-summary">Assessed and improved the jeopardized NSAR system refresh, implementing a modular ASP.NET MVC architecture.</span>
+								<span class="sub-collection-item-tech">ASP.NET MVC, MvcCodeRouting, static code analysis tools</span>
+							</summary>
+							<div class="sub-collection-item-detail">
+								<p>Tasked with improving the jeopardized NSAR system refresh, I helped course-correct the project to complete critical technology upgrades.</p>
+								<p>Collaborated with the NSAR team and utilized static code analysis tools to implement a modular ASP.NET MVC-based application architecture, leveraging the open-source MvcCodeRouting package.</p>
+							</div>
+						</details>
 					</div>
 				</div>
 				<div class="collection-item">
@@ -252,13 +708,28 @@
 					<div class="item-description s1">CenterState Bank maintains approximately $5 billion in assets, $3.9 billion in deposits, and $3.1 billion in loans, providing traditional deposit and lending products and services to its commercial and retail customers, and also provides correspondent banking and capital market services for approximately 600 community banks nationwide.</div>
 					<div class="sub-collection">
 						<div class="sub-collection-heading">Projects and Responsibilities</div>
-						<ul class="sub-collection-list">
-							<li><span class="sub-collection-item-title">Correspondence Banking Software Platform Development</span>
-								<span class="sub-collection-item-detail">Developed the service layer and REST API client library with ASP.NET MVC 2 for routing to REST-style API service handlers (pre Web API), NHibernate 2.x, Ninject for Inversion of Control (IoC), and Test-Driven-Development (TDD) with NUnit. My components integrated with front end code, which consisted of Silverlight 4.0 and Prism with Unity for IoC, relying on the EventAggregator for loosely-coupled module interaction. Security requirements necessitated a move to WPF, however, made easier since Prism targets both platforms. We used Model-View-ViewModel (MVVM) with TDD.</span>
-							</li>
-							<li><span class="sub-collection-item-title">Agile Adoption</span>
-								<span class="sub-collection-item-detail">Led the in-house development team and other Abel Solutions staff through preliminary Scrum training to get everyone on the same page for the development phase of the project.</span></li>
-						</ul>
+						<details>
+							<summary>
+								<span class="sub-collection-item-title">Correspondence Banking Software Platform Development</span>
+								<span class="sub-collection-item-summary">Developed the service layer and REST API client library for a correspondence banking software platform.</span>
+								<span class="sub-collection-item-tech">ASP.NET MVC 2, NHibernate 2.x, Ninject, Test-Driven-Development (TDD), NUnit, Silverlight 4.0, Prism, Unity, WPF, Model-View-ViewModel (MVVM)</span>
+							</summary>
+							<div class="sub-collection-item-detail">
+								<p>Developed the service layer and REST API client library using ASP.NET MVC 2 for routing to REST-style API service handlers (before Web API), NHibernate 2.x for data access, and Ninject for Inversion of Control (IoC). Test-Driven-Development (TDD) was implemented with NUnit.</p>
+								<p>These components integrated with a front end consisting of Silverlight 4.0 and Prism with Unity for IoC, utilizing the EventAggregator for loosely-coupled module interaction. Security requirements necessitated a transition to WPF, which was facilitated by Prism's support for both platforms. The Model-View-ViewModel (MVVM) pattern was employed along with TDD.</p>
+							</div>
+						</details>
+
+						<details>
+							<summary>
+								<span class="sub-collection-item-title">Agile Adoption</span>
+								<span class="sub-collection-item-summary">Led the in-house development team and other staff through preliminary Scrum training.</span>
+								<span class="sub-collection-item-tech">Scrum</span>
+							</summary>
+							<div class="sub-collection-item-detail">
+								<p>Led the in-house development team and other Abel Solutions staff through preliminary Scrum training to align everyone for the project's development phase.</p>
+							</div>
+						</details>
 					</div>
 				</div>
 				<div class="collection-item">
@@ -268,14 +739,41 @@
 					<div class="item-description s1">PayDay USA, Inc. is a national leader in payroll processing and Human Resource servicing. The company was founded in 1993 and has grown to be the largest independent payroll bureau in the Southeast; processing in excess of $3 Billion in payroll annually.</div>
 					<div class="sub-collection">
 						<div class="sub-collection-heading">Projects and Responsibilities</div>
-						<ul class="sub-collection-list">
-							<li><span class="sub-collection-item-title">Agile Adoption</span>
-								<span class="sub-collection-item-detail">Starting from the bottom-up I introduced the Scrum project management framework to the team by implementing a task wall in my own office. This quickly spread to other departments who began using "big visible charts" to help their own teams collaborate and communicate. We began to adopt agile practices and principles like collaborative estimation with Planning Poker, backlog item prioritization, collaborative code-reviews and pair-programming, unit testing, automated UI regression testing, and continuous integration using CruiseControl.NET. Following these technical improvements, we then moved the Scrum wall into a shared conference room and implemented daily Scrum meetings with the participation of company executives and other business stakeholders to demonstrate our progress and seek critical feedback as soon as possible. Next we began to involve our remotely located QA testers on a daily basis, pushing builds to them every day and tracking our progress through BugTracker.NET. Our end-of-sprint retrospectives are providing crucial input for process improvement from all participants. Executives, business stakeholders, developers, testers, and alpha users all reported great benefits from the agile adoption during these retrospectives.</span></li>
-							<li><span class="sub-collection-item-title">Entity framework major architectural refactoring</span>
-								<span class="sub-collection-item-detail">When I joined the team I was assigned to implement the complex security model (described below) for a new web application with the requirement that the existing legacy database data could populate the security model. The home-grown code-generation / ORM tool the team used featured statically generated stored-procedures, but the complex security requirements required that statements be generated on-the-fly to take into account ambient properties of the current context. I refactored the ORM tool to use C# generics and virtual base class methods to allow custom hooks into life-cycle events like CanSave, PreSave, PostSave, and so forth for the other CRUD operations. This allowed us to remove more than 3,000 static stored procedures across the several hundred database entities.</span></li>
-							<li><span class="sub-collection-item-title">Security Model Architecture and Implementation</span>
-								<span class="sub-collection-item-detail">Architected and implemented complex security model to interface a new web application with the company's flagship enterprise payroll processing system. The model requires security at the levels of User, Role, Filter, Field, Field Conditional, and Navigation Path. I implemented this using Test-First development to build up a suite of more than 40 unit tests, which has enabled us to confidently refactor and retest the internals over a number of months as requirements from our business stakeholders have forced adaptation.</span></li>
-						</ul>
+						<details>
+							<summary>
+								<span class="sub-collection-item-title">Agile Adoption</span>
+								<span class="sub-collection-item-summary">Introduced and implemented Scrum, leading to improved collaboration, communication, and development practices.</span>
+								<span class="sub-collection-item-tech">Scrum, Planning Poker, BugTracker.NET, CruiseControl.NET</span>
+							</summary>
+							<div class="sub-collection-item-detail">
+								<p>Initiated Scrum adoption by implementing a task wall, which organically spread to other departments. Introduced agile practices like collaborative estimation, backlog prioritization, code reviews, pair programming, unit testing, automated UI regression testing, and continuous integration using CruiseControl.NET.</p>
+								<p>Moved the Scrum wall to a shared space, implemented daily Scrum meetings with stakeholder participation, and involved remote QA testers daily, tracking progress through BugTracker.NET. End-of-sprint retrospectives gathered feedback for process improvement, resulting in reported benefits across all participants.</p>
+							</div>
+						</details>
+
+						<details>
+							<summary>
+								<span class="sub-collection-item-title">Entity framework major architectural refactoring</span>
+								<span class="sub-collection-item-summary">Refactored the ORM tool to support dynamic statement generation and remove static stored procedures.</span>
+								<span class="sub-collection-item-tech">C# generics, virtual base class methods</span>
+							</summary>
+							<div class="sub-collection-item-detail">
+								<p>Tasked with implementing a complex security model for a new web application that required integration with legacy database data. The existing ORM tool used statically generated stored procedures, which were insufficient for the dynamic security requirements.</p>
+								<p>Refactored the ORM tool to use C# generics and virtual base class methods, allowing custom hooks into CRUD lifecycle events. This enabled dynamic statement generation and the removal of over 3,000 static stored procedures.</p>
+							</div>
+						</details>
+
+						<details>
+							<summary>
+								<span class="sub-collection-item-title">Security Model Architecture and Implementation</span>
+								<span class="sub-collection-item-summary">Architected and implemented a complex security model for a web application interfacing with a payroll system.</span>
+								<span class="sub-collection-item-tech">Test-First development</span>
+							</summary>
+							<div class="sub-collection-item-detail">
+								<p>Designed and implemented a complex security model with multiple levels (User, Role, Filter, Field, Field Conditional, Navigation Path) for a web application integrating with the company's enterprise payroll system.</p>
+								<p>Utilized Test-First development to build a suite of over 40 unit tests, enabling confident refactoring and retesting as requirements evolved.</p>
+							</div>
+						</details>
 					</div>
 				</div>
 				<div class="collection-item">
@@ -287,30 +785,49 @@
 						million registered users.</div>
 					<div class="sub-collection">
 						<div class="sub-collection-heading">Projects and Responsibilities</div>
-						<ul class="sub-collection-list">
-							<li><span class="sub-collection-item-title">Scrum Project Management Framework Adoption</span>
-								<span class="sub-collection-item-detail">With the support and motivation of the rest of our technical team, I helped lead the company, from the bottom up, to adopt Scrum as a project management framework by performing research into methodologies for high-performance, high-quality teams. I
-	conducted numerous lunch-n-learn sessions to show recorded presentations from agile, Scrum, and Lean to educate the team about Scrum and agile. Adopting Scrum greatly improved our team productivity, morale, and ability to prioritize amongst many competing projects. Scrum's practice of keeping work items physically visible, as opposed to hidden away in a spreadsheet or in MS Project, provided an excellent tactic for improving communication and creating team commitment. After taking formal Scrum training I convinced the company
-	CEO to send the entire team to attend Scrum training with Scrum co-inventor Jeff Sutherland to enable the
-	whole team to be on the same footing moving forward. The company continues to use Scrum very successfully.</span></li>
-							<li><span class="sub-collection-item-title">Agile Practices & Build Process Improvement Adoption</span>
-								<span class="sub-collection-item-detail">Led the introduction of
-	agile design and development practices into the organization by
-	focusing on process improvement essentials like automating regression
-	test suites for core functionality, increasing code-coverage
-	reporting for user acceptance and unit testing using Selenium, NCover
-	and NUnit. This decreased the number of defects in our system and
-	increased the reliability and repeatability of our testing scenarios,
-	enabling us to more rapidly refactor the code-base to improve application quality.</span></li>
-							<li><span class="sub-collection-item-title">RESTful Web Service API Architecture</span>
-								<span class="sub-collection-item-detail">Led the architectural design of the company's new Web Service API strategy. Rather than utilize tightly-coupled, RPC-centric SOAP based web services, we
-	followed Google, eBay, Amazon, and Yahoo!'s lead by creating a simple REST-based API for allowing external users to POST and GET data to and from our backend system. I developed the high-level architecture and another senior engineer implemented the completed solution. The solution is based on .NET 3.5, ASP.NET MVC 1.0, and MvcContrib's
-	SimplyRestful library.</span></li>
-							<li><span class="sub-collection-item-title">Auction System Deployment and Stabilization</span>
-								<span class="sub-collection-item-detail">Lead application architect for overseeing the deployment and stabilization of the new version of the flagship auction system into production for extensive beta testing. This involved running the new system "side-by-side" with the existing version and on top of the same database. Because the schemas differ from one version to the next, we utilized synonyms and views to expose the new version's structures on top of the legacy database. This approach enabled us to minimize risk
-	and maximize early ROI by allowing customers to use the system while providing crucial feedback for essential refactorings.</span>
-							</li>
-						</ul>
+						<details>
+							<summary>
+								<span class="sub-collection-item-title">Scrum Project Management Framework Adoption</span>
+								<span class="sub-collection-item-summary">Led the company's bottom-up adoption of Scrum, resulting in improved productivity, morale, and prioritization.</span>
+								<span class="sub-collection-item-tech">Scrum, Agile, Lean</span>
+							</summary>
+							<div class="sub-collection-item-detail">
+								<p>Led the company's adoption of Scrum through research, lunch-n-learn sessions, and formal training. The adoption of Scrum resulted in improved team productivity, morale, and prioritization among competing projects. Scrum's emphasis on visual work items enhanced communication and team commitment. The entire team, including the CEO, received formal Scrum training from Jeff Sutherland, ensuring a unified approach. The company continues to successfully utilize Scrum.</p>
+							</div>
+						</details>
+
+						<details>
+							<summary>
+								<span class="sub-collection-item-title">Agile Practices & Build Process Improvement Adoption</span>
+								<span class="sub-collection-item-summary">Led the introduction of agile practices and build process improvements, resulting in decreased defects and increased reliability.</span>
+								<span class="sub-collection-item-tech">Selenium, NCover, NUnit</span>
+							</summary>
+							<div class="sub-collection-item-detail">
+								<p>Led the introduction of agile design and development practices, focusing on process improvement essentials like automating regression test suites, increasing code-coverage reporting for user acceptance and unit testing using Selenium, NCover, and NUnit. These efforts led to a decrease in system defects and increased the reliability and repeatability of testing scenarios, enabling faster code refactoring and improved application quality.</p>
+							</div>
+						</details>
+
+						<details>
+							<summary>
+								<span class="sub-collection-item-title">RESTful Web Service API Architecture</span>
+								<span class="sub-collection-item-summary">Led the architectural design of a new REST-based Web Service API, enabling external data interaction.</span>
+								<span class="sub-collection-item-tech">.NET 3.5, ASP.NET MVC 1.0, MvcContrib SimplyRestful</span>
+							</summary>
+							<div class="sub-collection-item-detail">
+								<p>Led the architectural design of the company's new Web Service API strategy, opting for a simple REST-based API over tightly-coupled SOAP-based web services. Developed the high-level architecture, while another senior engineer implemented the solution based on .NET 3.5, ASP.NET MVC 1.0, and MvcContrib's SimplyRestful library.</p>
+							</div>
+						</details>
+
+						<details>
+							<summary>
+								<span class="sub-collection-item-title">Auction System Deployment and Stabilization</span>
+								<span class="sub-collection-item-summary">Lead application architect for deploying and stabilizing a new auction system version for beta testing.</span>
+								<span class="sub-collection-item-tech">Synonyms, Views</span>
+							</summary>
+							<div class="sub-collection-item-detail">
+								<p>As the lead application architect, oversaw the deployment and stabilization of the new flagship auction system version into production for extensive beta testing. This involved running the new system alongside the existing version on the same database. Synonyms and views were utilized to expose the new version's structures on top of the legacy database, minimizing risk and maximizing early ROI by allowing customer usage and feedback collection for essential refactorings.</p>
+							</div>
+						</details>
 					</div>
 				</div>
 				<div class="collection-item">
@@ -320,11 +837,16 @@
 					<div class="item-description s1">Abel Solutions, Inc. is a consulting firm specializing in custom business application development with Microsoft .NET technologies. It also specializes in the implementation of solutions using Microsoft Sharepoint and other information worker technologies.</div>
 					<div class="sub-collection">
 						<div class="sub-collection-heading">Projects and Responsibilities</div>
-						<ul class="sub-collection-list">
-							<li><span class="sub-collection-item-title">GB Auction System Horizontal Migration Development</span>
-								<span class="sub-collection-item-detail">Promoted within the company to role of Technical Architect and continued to lead the GB auction migration project initiated as a Senior Developer described below. During this time I focused on the horizontal migration architecture and development tasks and in coordinating the integration of work from three other developers. One developer worked locally at Abel, while the other two were full-time GB employees.</span>
-							</li>
-						</ul>
+						<details>
+							<summary>
+								<span class="sub-collection-item-title">GB Auction System Horizontal Migration Development</span>
+								<span class="sub-collection-item-summary">Promoted to Technical Architect, continued leading the GB auction migration project, focusing on architecture, development, and team coordination.</span>
+								<span class="sub-collection-item-tech">N/A (technologies not explicitly mentioned)</span>
+							</summary>
+							<div class="sub-collection-item-detail">
+								<p>Promoted within the company to the role of Technical Architect and continued to lead the GB auction migration project initiated earlier as a Senior Developer. During this phase, I focused on the horizontal migration architecture and development tasks, as well as coordinating the integration of work from three other developers. One developer was located locally at Abel, while the other two were full-time GB employees.</p>
+							</div>
+						</details>
 					</div>
 				</div>
 				<div class="collection-item">
@@ -334,37 +856,62 @@
 					<div class="item-description s1">Abel Solutions, Inc. is a consulting firm specializing in custom business application development with Microsoft .NET technologies. It also specializes in the implementation of solutions using Microsoft Sharepoint and other information worker technologies.</div>
 					<div class="sub-collection">
 						<div class="sub-collection-heading">Projects and Responsibilities</div>
-						<ul class="sub-collection-list">
-							<li><span class="sub-collection-item-title">GunBroker.com Auction System Core Migration and New Application Modules Development</span>
-								<span class="sub-collection-item-detail">Lead developer for creating client deliverable consisting of C# interfaces, classes, ASP.NET 2.0 pages, custom web controls, user controls,
-	JavaScript libraries, and related configuration files for the
-	foundational code needed to support a complete horizontal migration and
-	for new account and inventory management modules. Utilized .netTiers entity framework, Master
-	Pages, C# generics, interfaces, GridView, Wizard control, and developed
-	client-side JavaScript based data-binding and templating mechanism for
-	creating just-in-time paramaterized popup menus in GridView rows.
-	Created custom membership provider to wrap client's existing user API.
-	Used Visual Studio 2005 Testing Projects to perform unit testing for
-	new components. Directed one other developer during this project.</span>
-							</li>
-							<li><span class="sub-collection-item-title">GunBroker.com Auction System Application Modules Design</span>
-								<span class="sub-collection-item-detail">Lead architect for creating client deliverable consisting of design documents detailing all implementation goals and design specifications for implementing new accounting and inventory management modules. Design plan included prototype code for building on top of client's existing
-	interface signatures and specified how to loosely couple all object dependencies to enable ease of modification in future releases. Utilized C# 2.0 generics and yield statement to easily wrap underlying API in a strongly-typed and reduced-code way.</span>
-							</li>
-							<li><span class="sub-collection-item-title">GunBroker.com Auction System Application Modules Requirements Definition</span>
-								<span class="sub-collection-item-detail">Lead requirements analyst for creating client deliverable consisting of requirements documents detailing all functional and non-functional requirements, assumptions, boundaries, expectations, and project exclusions for new accounting and inventory management modules to be
-	designed and developed for the client's auction system.</span>
-							</li>
-							<li><span class="sub-collection-item-title">GunBroker.com Auction System Architectural Review</span>
-								<span class="sub-collection-item-detail">Lead technical analyst for creating client deliverable consisting of technical architecture assessment of client's existing $150 million sales volume generating sporting goods auction application. Analyzed C++, COM, ASP 3.0, and SQL Server 2000 components and recommended a hybrid horizontal and vertical migration strategy to ASP.NET 2.0 and C#. The horizontal portion called for implementing a new front-end layer in ASP.NET while using RCW interop assemblies for short-term reusability
-	and maximization of existing investment. The vertical portion was applied to new functionality modules, calling for these to be written in pure C# with no COM middle layer.</span>
-							</li>
-							<li><span class="sub-collection-item-title">Sales and Incentives Management Application Module</span>
-								<span class="sub-collection-item-detail">Added new reporting module to client's existing ASP.NET 1.1 / C# application used for managing sales information and creating bonuses and promotions based
-	upon collected data. Utilized NUnit testing framework for testing new
-	features.</span>
-							</li>
-						</ul>
+						<details>
+							<summary>
+								<span class="sub-collection-item-title">GunBroker.com Auction System Core Migration and New Application Modules Development</span>
+								<span class="sub-collection-item-summary">Lead developer for creating foundational code for a complete horizontal migration and new account and inventory management modules.</span>
+								<span class="sub-collection-item-tech">C#, ASP.NET 2.0, .netTiers, MasterPages, C# generics, GridView, Wizard control, JavaScript, Visual Studio 2005</span>
+							</summary>
+							<div class="sub-collection-item-detail">
+								<p>Lead developer responsible for creating a client deliverable consisting of C# interfaces, classes, ASP.NET 2.0 pages, custom web controls, user controls, JavaScript libraries, and related configuration files. This foundational code supported a complete horizontal migration and new account and inventory management modules.</p>
+								<p>Utilized .netTiers entity framework, MasterPages, C# generics, interfaces, GridView, and the Wizard control. Developed client-side JavaScript-based data-binding and templating mechanisms for creating just-in-time parameterized popup menus in GridView rows. Created a custom membership provider to wrap the client's existing user API. Used Visual Studio 2005 Testing Projects for unit testing new components. Directed one other developer during this project.</p>
+							</div>
+						</details>
+
+						<details>
+							<summary>
+								<span class="sub-collection-item-title">GunBroker.com Auction System Application Modules Design</span>
+								<span class="sub-collection-item-summary">Lead architect for creating design documents and prototype code for new accounting and inventory management modules.</span>
+								<span class="sub-collection-item-tech">C# 2.0</span>
+							</summary>
+							<div class="sub-collection-item-detail">
+								<p>Lead architect responsible for creating a client deliverable consisting of design documents detailing implementation goals and specifications for new accounting and inventory management modules. The design plan included prototype code built on top of the client's existing interface signatures and specified how to loosely couple object dependencies for future modification ease. Utilized C# 2.0 generics and the yield statement to wrap the underlying API in a strongly-typed and reduced-code manner.</p>
+							</div>
+						</details>
+
+						<details>
+							<summary>
+								<span class="sub-collection-item-title">GunBroker.com Auction System Application Modules Requirements Definition</span>
+								<span class="sub-collection-item-summary">Lead requirements analyst for creating requirements documents for new accounting and inventory management modules.</span>
+								<span class="sub-collection-item-tech">N/A (technologies not explicitly mentioned)</span>
+							</summary>
+							<div class="sub-collection-item-detail">
+								<p>As the lead requirements analyst, created a client deliverable consisting of requirements documents detailing all functional and non-functional requirements, assumptions, boundaries, expectations, and project exclusions for new accounting and inventory management modules to be designed and developed for the client's auction system.</p>
+							</div>
+						</details>
+
+						<details>
+							<summary>
+								<span class="sub-collection-item-title">GunBroker.com Auction System Architectural Review</span>
+								<span class="sub-collection-item-summary">Lead technical analyst for assessing the client's existing auction application and recommending a hybrid migration strategy.</span>
+								<span class="sub-collection-item-tech">C++, COM, ASP 3.0, SQL Server 2000, ASP.NET 2.0, C#</span>
+							</summary>
+							<div class="sub-collection-item-detail">
+								<p>As the lead technical analyst, created a client deliverable consisting of a technical architecture assessment of the client's existing $150 million sales-generating sporting goods auction application. Analyzed C++, COM, ASP 3.0, and SQL Server 2000 components.</p>
+								<p>Recommended a hybrid horizontal and vertical migration strategy to ASP.NET 2.0 and C#. The horizontal migration involved implementing a new front-end layer in ASP.NET while using RCW interop assemblies for short-term reusability and maximizing the existing investment. The vertical migration focused on new functionality modules, recommending they be written in pure C# without a COM middle layer.</p>
+							</div>
+						</details>
+
+						<details>
+							<summary>
+								<span class="sub-collection-item-title">Sales and Incentives Management Application Module</span>
+								<span class="sub-collection-item-summary">Added a new reporting module to an existing ASP.NET application for managing sales and creating incentives.</span>
+								<span class="sub-collection-item-tech">ASP.NET 1.1, C#, NUnit</span>
+							</summary>
+							<div class="sub-collection-item-detail">
+								<p>Added a new reporting module to the client's existing ASP.NET 1.1 / C# application used for managing sales information and creating bonuses and promotions based on collected data. The NUnit testing framework was utilized for testing new features.</p>
+							</div>
+						</details>
 					</div>
 				</div>
 				<div class="collection-item">
@@ -375,41 +922,111 @@
 						access, digital credentials and authentication, rapid outbreak reporting, peer-to-peer consultation, and CDC-assisted coordination of investigations.</div>
 					<div class="sub-collection">
 						<div class="sub-collection-heading">Projects and Responsibilities</div>
-						<ul class="sub-collection-list">
-							<li><span class="sub-collection-item-title">Enterprise Directory Web Services Integration</span>
-								<span class="sub-collection-item-detail">Analyzed and defined technical requirements for integration of the CDC mission-critical Epi-X system with the emergent CDC enterprise-wide J2EE-based user directory. Worked with class diagrams, WSE Beta 3, and Web Services proxy objects in C# using the Visual Studio .NET 2005 IDE.</span>
-							</li>
-							<li><span class="sub-collection-item-title">User Training Course Scheduling Portal Module</span>
-								<span class="sub-collection-item-detail">Analyzed, designed, and implemented modifications for integration of commercial source-code-available DNN portal module. Completed module allows the Epi-X Training Manager to schedule sessions and record metrics about users trained on-line without using cumbersome spreadsheets. Modified original module source code to upgrade it to DNN Framework v. 3.1 compatibility to address breaking-changes between DNN framework versions. Used Visio for class/entity diagrams, CodeSmith code generation templates to create T-SQL CRUD, DAL, BLL, and Controller class code. Coded VB.NET based ASP.NET UI code in Visual Studio .NET 2003. Created SQL Server 2000 stored procedures and user-defined-functions using Visual Studio .NET 2003 database project template. Used NDoc and NAnt for API documentation and automated builds.</span>
-							</li>
-							<li><span class="sub-collection-item-title">Outbreak Report Import/Export Tools</span>
-								<span class="sub-collection-item-detail">Created tools for exporting, transforming, and importing outbreak reports from production SQL Server 2000 DB into mobile demonstration DBs. Used XML, C# and Visual Studio.NET 2005. Created SqlMirror class that builds upon the SqlBulkCopy ADO.NET 2.0 class internally. Used Doxygen tool to generate API documentation for classes.</span>
-							</li>
-							<li><span class="sub-collection-item-title">Security Training Course Software</span>
-								<span class="sub-collection-item-detail">Designed and implemented interactive security training course software to ensure that Epi-X complied with federal regulations. Implemented system module using Visual Studio.NET 2003, SQL Server 2000, PowerPoint, Macromedia RoboDemo 5.0, prototype-based JavaScript, XML and XSLT (with nxslt and EXSLT extensions), and Adobe Photoshop.</span>
-							</li>
-							<li><span class="sub-collection-item-title">Business Intelligence Reporting</span>
-								<span class="sub-collection-item-detail">Created SQL Reporting Services reports for displaying both summary and drill-through reports about Epi-X system usage activity. Implemented reports using SQL Reporting Services for Microsoft SQL Server 2000. Created flexible dynamic T-SQL stored procedures and table-valued user-defined-functions for aggregating disparate queries into one result set for summarized
-	viewing.</span>
-							</li>
-							<li><span class="sub-collection-item-title">Mobile Device Access</span>
-								<span class="sub-collection-item-detail">Worked with CDC secure network stewards, information security stewards, and other stakeholders to implement plans for offering Blackberry RIM device support for HTTPS-protected CDC resources. Researched and determined how to configure devices for securely communicating in end-to-end mode. Created prototype application for adaptable UI presentation layer based on HTTP header
-	inspection.</span>
-							</li>
-							<li><span class="sub-collection-item-title">Deployment Process Automation</span>
-								<span class="sub-collection-item-detail">Researched, designed and implemented an automated process for source code building, packaging, versioning and deployment, and providing code changes accountability summaries. Used Red-Gate SQL Tools, Araxis Merge Professional 6.5, and InstallAnywhere.NET to create MSI deployment packages. Used XSLT transformations to create change logs from Araxis reports. Replacing the previous
-	manual process reduced redundancy of efforts and possibility for human error, and increased time available for development and testing.</span>
-							</li>
-							<li><span class="sub-collection-item-title">Terrorist Attack Emergency Preparedness Exercise</span>
-								<span class="sub-collection-item-detail">Participated in US Federal Government Emergency Preparedness Exercise in September 2003 at Fort McClellan with the Epi-X notification officer. Monitored Epi-X system availability in the control room during exercise execution, communicated with Atlanta base team, and assisted on-site users during a simulated outbreak scenario of a terrorist attack of aerosolized
-	plague.</span>
-							</li>
-							<li><span class="sub-collection-item-title">Additional Projects, Responsibilities, and Experience</span>
-								<span class="sub-collection-item-detail">Created dynamic role-based emergency notification improvements using SQL Server 2000 tables, relationships, stored procedures, and user-defined-functions; Created data-driven RoboHelp deployment, replacing legacy context-sensitive static help files with RoboHelp X5, using Ajax
-	JavaScript techniques for retrieving SQL Server 2000 stored procedure derived data into the help files; Performed versioning, packaging, and deploying upgrades duties for code built from Visual Source Safe; Maintained development, integration, production, hotsite, and mobile demonstration deployment environments; Additionally, I routinely worked with VB6 COM Objects, SQL Query Analyzer, SQL Profiler, digital client certificates and IIS in
-	HTTPS mode, GIS queries, HTML/XHTML, CSS, JavaScript, ASP/VBScript, Excel, Adobe PhotoShop, GIMP, and Windows Scripting Host.</span>
-							</li>
-						</ul>
+						<details>
+							<summary>
+								<span class="sub-collection-item-title">Enterprise Directory Web Services Integration</span>
+								<span class="sub-collection-item-summary">Analyzed and defined technical requirements for integrating Epi-X with the CDC enterprise user directory.</span>
+								<span class="sub-collection-item-tech">Class diagrams, WSE Beta 3, Web Services, C#, Visual Studio .NET 2005</span>
+							</summary>
+							<div class="sub-collection-item-detail">
+								<p>Analyzed and defined technical requirements for integrating the CDC's mission-critical Epi-X system with the emergent CDC enterprise-wide J2EE-based user directory. Worked with class diagrams, WSE Beta 3, and Web Services proxy objects in C# using the Visual Studio .NET 2005 IDE.</p>
+							</div>
+						</details>
+
+						<details>
+							<summary>
+								<span class="sub-collection-item-title">User Training Course Scheduling Portal Module</span>
+								<span class="sub-collection-item-summary">Modified and integrated a DNN portal module for scheduling training sessions and recording user metrics.</span>
+								<span class="sub-collection-item-tech">DNN Framework, Visio, CodeSmith, VB.NET, ASP.NET, SQL Server 2000, NDoc, NAnt</span>
+							</summary>
+							<div class="sub-collection-item-detail">
+								<p>Analyzed, designed, and implemented modifications for the integration of a commercial source-code-available DNN portal module. The completed module enables the Epi-X Training Manager to schedule sessions and record metrics about users trained online, eliminating the need for cumbersome spreadsheets.</p>
+								<p>Upgraded the original module source code to DNN Framework v. 3.1 compatibility. Used Visio for class and entity diagrams and CodeSmith code generation templates to create T-SQL CRUD, DAL, BLL, and Controller class code. Coded the VB.NET-based ASP.NET UI in Visual Studio .NET 2003. Created SQL Server 2000 stored procedures and user-defined-functions using the Visual Studio .NET 2003 database project template. Utilized NDoc and NAnt for API documentation and automated builds.</p>
+							</div>
+						</details>
+
+						<details>
+							<summary>
+								<span class="sub-collection-item-title">Outbreak Report Import/Export Tools</span>
+								<span class="sub-collection-item-summary">Created tools for exporting, transforming, and importing outbreak reports between databases.</span>
+								<span class="sub-collection-item-tech">XML, C#, Visual Studio.NET 2005, SqlBulkCopy, Doxygen</span>
+							</summary>
+							<div class="sub-collection-item-detail">
+								<p>Created tools for exporting, transforming, and importing outbreak reports from the production SQL Server 2000 database into mobile demonstration databases. Utilized XML, C#, and Visual Studio.NET 2005. Developed a SqlMirror class that extends the SqlBulkCopy ADO.NET 2.0 class internally. Used the Doxygen tool to generate API documentation for classes.</p>
+							</div>
+						</details>
+
+						<details>
+							<summary>
+								<span class="sub-collection-item-title">Security Training Course Software</span>
+								<span class="sub-collection-item-summary">Designed and implemented interactive security training course software for Epi-X compliance.</span>
+								<span class="sub-collection-item-tech">Visual Studio.NET 2003, SQL Server 2000, PowerPoint, Macromedia RoboDemo 5.0, JavaScript, XML, XSLT, Adobe Photoshop</span>
+							</summary>
+							<div class="sub-collection-item-detail">
+								<p>Designed and implemented interactive security training course software to ensure Epi-X compliance with federal regulations. The system module was implemented using Visual Studio.NET 2003, SQL Server 2000, PowerPoint, Macromedia RoboDemo 5.0, prototype-based JavaScript, XML and XSLT (with nxslt and EXSLT extensions), and Adobe Photoshop.</p>
+							</div>
+						</details>
+
+						<details>
+							<summary>
+								<span class="sub-collection-item-title">Business Intelligence Reporting</span>
+								<span class="sub-collection-item-summary">Created SQL Reporting Services reports for displaying summary and drill-through reports about Epi-X system usage.</span>
+								<span class="sub-collection-item-tech">SQL Reporting Services, T-SQL</span>
+							</summary>
+							<div class="sub-collection-item-detail">
+								<p>Created SQL Reporting Services reports to display both summary and drill-through reports regarding Epi-X system usage activity. Implemented reports using SQL Reporting Services for Microsoft SQL Server 2000. Created flexible dynamic T-SQL stored procedures and table-valued user-defined-functions to aggregate disparate queries into a single result set for summarized viewing.</p>
+							</div>
+						</details>
+
+						<details>
+							<summary>
+								<span class="sub-collection-item-title">Mobile Device Access</span>
+								<span class="sub-collection-item-summary">Collaborated to implement secure Blackberry RIM device support for HTTPS-protected CDC resources.</span>
+								<span class="sub-collection-item-tech">HTTP header inspection</span>
+							</summary>
+							<div class="sub-collection-item-detail">
+								<p>Worked with CDC secure network stewards, information security stewards, and other stakeholders to implement plans for offering Blackberry RIM device support for HTTPS-protected CDC resources. Researched and determined how to configure devices for secure end-to-end communication. Created a prototype application for an adaptable UI presentation layer based on HTTP header inspection.</p>
+							</div>
+						</details>
+
+						<details>
+							<summary>
+								<span class="sub-collection-item-title">Deployment Process Automation</span>
+								<span class="sub-collection-item-summary">Designed and implemented an automated process for source code building, packaging, versioning, deployment, and change tracking.</span>
+								<span class="sub-collection-item-tech">Red-Gate SQL Tools, Araxis Merge Professional 6.5, InstallAnywhere.NET, XSLT</span>
+							</summary>
+							<div class="sub-collection-item-detail">
+								<p>Researched, designed, and implemented an automated process for source code building, packaging, versioning, and deployment, along with providing code changes accountability summaries. Utilized Red-Gate SQL Tools, Araxis Merge Professional 6.5, and InstallAnywhere.NET to create MSI deployment packages. XSLT transformations were used to generate change logs from Araxis reports. This automation replaced the previous manual process, reducing redundancy, minimizing human error, and increasing time available for development and testing.</p>
+							</div>
+						</details>
+
+						<details>
+							<summary>
+								<span class="sub-collection-item-title">Terrorist Attack Emergency Preparedness Exercise</span>
+								<span class="sub-collection-item-summary">Participated in a US Federal Government Emergency Preparedness Exercise, monitoring Epi-X system availability and assisting on-site users.</span>
+								<span class="sub-collection-item-tech">N/A (technologies not explicitly mentioned)</span>
+							</summary>
+							<div class="sub-collection-item-detail">
+								<p>Participated in the US Federal Government Emergency Preparedness Exercise in September 2003 at Fort McClellan with the Epi-X notification officer. Monitored Epi-X system availability in the control room during the exercise, communicated with the Atlanta base team, and assisted on-site users during a simulated outbreak scenario of a terrorist attack involving aerosolized plague.</p>
+							</div>
+						</details>
+
+						<details>
+							<summary>
+								<span class="sub-collection-item-title">Additional Projects, Responsibilities, and Experience</span>
+								<span class="sub-collection-item-summary">Various projects and responsibilities, including dynamic role-based emergency notifications, data-driven RoboHelp deployment, and versioning/deployment tasks.</span>
+								<span class="sub-collection-item-tech">SQL Server 2000, RoboHelp X5, Ajax, JavaScript, Visual Source Safe, VB6, SQL Query Analyzer, SQL Profiler, HTTPS, GIS, HTML/XHTML, CSS, ASP/VBScript, Excel, Adobe PhotoShop, GIMP, Windows Scripting Host</span>
+							</summary>
+							<div class="sub-collection-item-detail">
+								<ul>
+									<li>Created dynamic role-based emergency notification improvements using SQL Server 2000 tables, relationships, stored procedures, and user-defined-functions.</li>
+									<li>Created data-driven RoboHelp deployment, replacing legacy context-sensitive static help files with RoboHelp X5, using Ajax JavaScript techniques for retrieving SQL Server 2000 stored procedure-derived data into the help files.</li>
+									<li>Performed versioning, packaging, and deploying upgrades duties for code built from Visual Source Safe.</li>
+									<li>Maintained development, integration, production, hotsite, and mobile demonstration deployment environments.</li>
+									<li>Routinely worked with VB6 COM Objects, SQL Query Analyzer, SQL Profiler, digital client certificates and IIS in HTTPS mode, GIS queries, HTML/XHTML, CSS, JavaScript, ASP/VBScript, Excel, Adobe PhotoShop, GIMP, and Windows Scripting Host.</li>
+								</ul>
+							</div>
+						</details>
 					</div>
 				</div>
 				<div class="collection-item">
@@ -419,35 +1036,43 @@
 					<div class="item-description s1">With more than 40 academic departments and interdisciplinary centers, the GSU College of Arts and Sciences provides an environment where students may both explore a wide range of interests and find their areas of specialization.</div>
 					<div class="sub-collection">
 						<div class="sub-collection-heading">Projects and Responsibilities</div>
-						<ul class="sub-collection-list">
-							<li><span class="sub-collection-item-title">Information
-	Architecture Design and XML Based Publishing Portal</span>
-								<span class="sub-collection-item-detail">Lead analyst and developer in the analysis, design and implementation of new versions of the College of Arts &amp; Sciences web site, <a href="http://www.cas.gsu.edu/">http://www.cas.gsu.edu</a>, and its supporting information systems. Implemented portal system using ASP.NET, C#, Custom Server Controls, User Controls, XML and XSLT, MS SQL Server, and Web Services. Finished system was used for six years by other offices to upload XML story content to promote college and departmental news highlights.</span>
-							</li>
-							<li><span class="sub-collection-item-title">Report collection and Querying System</span>
-								<span class="sub-collection-item-detail">Designed, implemented, and supported web-based system for collecting, verifying, sorting, viewing, and merging faculty annual reports as required by state Board of
-	Regents. Used CPAN and modular object-oriented PERL, dbi:Oracle, Oracle 8 for Linux, and MS Word VBA automation API. Finished system replaced previous manual process and allowed department directors to query and sort
-	entries of individual faculty members.</span>
-							</li>
-							<li><span class="sub-collection-item-title">Additional Responsibilities and Experience</span>
-								<span class="sub-collection-item-detail">Provided design and programming assistance, leadership, and guidance to departmental designers and programmers; Set up and maintained college web servers running Linux
-	and Windows 2000 Server; Mentored computer science graduate students on such technologies as Java, the .NET
-	Framework, ASP.NET, C#, VB.NET, JavaScript, PERL, XSLT, CGI, SQL, etc; Authored technical tutorial articles to support department level designers and programmers.</span>
-							</li>
-						</ul>
-					</div>
-				</div>
-				<div class="collection-item">
-					<div class="item-title s1">Independent Consulting</div>
-					<div class="item-description s1">I have independently consulted with a number of individuals and organizations over the years.</div>
-					<div class="sub-collection">
-						<div class="sub-collection-heading">Projects</div>
-						<ul class="sub-collection-list">
-							<li><span class="ProjectTitle1">Stoney River Capital Partners web site redesign with DotNetNuke 5.0</span></li>
-							<li><span class="ProjectTitle1">National Academy of Sports Medicine DotNetNuke 3.1 systems integration design plan review</span></li>
-							<li><span class="ProjectTitle1">TRENDS Marketing Group online registration system using PERL 5 CGI web forms</span></li>
-							<li><span class="ProjectTitle1">Andrew Young School of Policy Studies web content migration and automation using PERL 5 for XML and SGML processing</span></li>
-						</ul>
+						<details>
+							<summary>
+								<span class="sub-collection-item-title">Information Architecture Design and XML Based Publishing Portal</span>
+								<span class="sub-collection-item-summary">Lead analyst and developer for the design and implementation of new versions of the College of Arts & Sciences website and its supporting information systems.</span>
+								<span class="sub-collection-item-tech">ASP.NET, C#, Custom Server Controls, User Controls, XML, XSLT, MS SQL Server, Web Services</span>
+							</summary>
+							<div class="sub-collection-item-detail">
+								<p>Lead analyst and developer in the analysis, design, and implementation of new versions of the College of Arts & Sciences web site, <a href="http://www.cas.gsu.edu/">http://www.cas.gsu.edu</a>, and its supporting information systems. Implemented a portal system using ASP.NET, C#, Custom Server Controls, User Controls, XML and XSLT, MS SQL Server, and Web Services. The finished system was used for six years by other offices to upload XML story content to promote college and departmental news highlights.</p>
+							</div>
+						</details>
+
+						<details>
+							<summary>
+								<span class="sub-collection-item-title">Report collection and Querying System</span>
+								<span class="sub-collection-item-summary">Designed, implemented, and supported a web-based system for collecting, verifying, sorting, viewing, and merging faculty annual reports.</span>
+								<span class="sub-collection-item-tech">CPAN, PERL, dbi:Oracle, Oracle 8 for Linux, MS Word VBA automation API</span>
+							</summary>
+							<div class="sub-collection-item-detail">
+								<p>Designed, implemented, and supported a web-based system for collecting, verifying, sorting, viewing, and merging faculty annual reports as required by the state Board of Regents. Used CPAN and modular object-oriented PERL, dbi:Oracle, Oracle 8 for Linux, and MS Word VBA automation API. The finished system replaced the previous manual process and allowed department directors to query and sort entries of individual faculty members.</p>
+							</div>
+						</details>
+
+						<details>
+							<summary>
+								<span class="sub-collection-item-title">Additional Responsibilities and Experience</span>
+								<span class="sub-collection-item-summary">Provided design and programming assistance, leadership, and guidance; set up and maintained web servers; mentored students; authored technical tutorials.</span>
+								<span class="sub-collection-item-tech">Java, .NET Framework, ASP.NET, C#, VB.NET, JavaScript, PERL, XSLT, CGI, SQL, Linux, Windows 2000 Server</span>
+							</summary>
+							<div class="sub-collection-item-detail">
+								<ul>
+									<li>Provided design and programming assistance, leadership, and guidance to departmental designers and programmers.</li>
+									<li>Set up and maintained college web servers running Linux and Windows 2000 Server.</li>
+									<li>Mentored computer science graduate students on technologies such as Java, the .NET Framework, ASP.NET, C#, VB.NET, JavaScript, PERL, XSLT, CGI, SQL, etc.</li>
+									<li>Authored technical tutorial articles to support department-level designers and programmers.</li>
+								</ul>
+							</div>
+						</details>
 					</div>
 				</div>
 			</div>
@@ -548,6 +1173,7 @@
 						<div class="skillset col-sm-4">
 							<div class="skillset-title">Programming</div>
 							<ul class="skillset-list">
+								<li>Kotlin 1.9.20</li>
 								<li>C# 1.0 - 7.1</li>
 								<li>C</li>
 								<li>C++</li>
@@ -572,6 +1198,7 @@
 						<div class="skillset col-sm-4">
 							<div class="skillset-title">Web Development</div>
 							<ul class="skillset-list">
+								<li>Spring Boot 3.3.3</li>
 								<li>ASP.NET MVC (Model-View-Controller) 1.0 - 5.3</li>
 								<li>ASP.NET WebForms 1.1 - 3.5</li>
 								<li>Express JS Web Framework</li>
@@ -598,6 +1225,7 @@
 						<div class="skillset col-sm-4">
 							<div class="skillset-title">APIs, Frameworks, Toolkits</div>
 							<ul class="skillset-list">
+								<li>JDK 21</li>
 								<li>Microsoft .NET Framework 1.0 - 4.7.1</li>
 								<li>Castle Windsor IoC Container</li>
 								<li>Moq</li>
@@ -627,6 +1255,7 @@
 							<ul class="skillset-list">
 								<li>JavaScript</li>
 								<li>JScript</li>
+								<li>Bash</li>
 								<li>Powershell Scripting</li>
 								<li>PERL</li>
 								<li>VBScript</li>
@@ -876,10 +1505,10 @@
 				<div class="collection-item">
 					<div class="sub-collection">
 						<ul class="sub-collection-list">
-							<li>Founder and organizer of <a href="http://www.meetup.com/CoderDojoPonceSprings">CoderDojo Ponce Springs</a></li>
+							<li>Founder and organizer of <a href="http://www.meetup.com/CoderDojoPonceSprings">CoderDojo Ponce Springs</a> (2013 - 2020)</li>
 							<li>Co-Founder and first organizer
-								of <a href="http://www.meetup.com/AtlantaScienceTavern">The Atlanta Science Tavern</a></li>
-							<li>Founder and organizer of <a href="http://www.meetup.com/ATLAltDotNet">The ATL ALT.NET Meetup Group</a></li>
+								of <a href="http://www.meetup.com/AtlantaScienceTavern">The Atlanta Science Tavern</a> (2008 - 2011)</li>
+							<li>Founder and organizer of The ATL ALT.NET Meetup Group (2008 - 2016)</li>
 							<li>Contributor to the <a href="http://www.openepi.com/">OpenEpi Open Source Epidemiologic Public Health Statistics Project</a></li>
 							<li>Member of Association for Computing Machinery (ACM)</li>
 							<li>Founded and organized the Atlanta DotNetNuke Users Group Meetup in 2006</li>
